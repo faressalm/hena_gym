@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../constants/strings.dart';
 import 'screens/authenticate/register.dart';
 import 'screens/wrapper.dart';

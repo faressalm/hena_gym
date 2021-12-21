@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'data/models/my_user.dart';
+import 'data/repository/auth_repo.dart';
+import 'data/services/auth_services.dart';
 import 'utils/logger.dart';
 import 'constants/my_gui.dart';
-import 'frontend/screens/authenticate/register.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'utils/theme_utils.dart';
 import 'frontend/app_router.dart';
@@ -18,10 +21,14 @@ class HenaGym extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: appRouter.generateRoute,
-      theme: ThemeData(primarySwatch: buildMaterialColor(MyColors.darkRed)),
+    return StreamProvider<MyUser?>.value(
+      value: AuthRepository(AuthServices()).user,
+      initialData: null,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: appRouter.generateRoute,
+        theme: ThemeData(primarySwatch: buildMaterialColor(MyColors.darkRed)),
+      ),
     );
   }
 }

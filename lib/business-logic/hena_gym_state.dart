@@ -1,4 +1,4 @@
-part of 'hena_gym_cubit.dart';
+part of '../hena_gym_cubit.dart';
 
 @immutable
 abstract class HenaGymState {}

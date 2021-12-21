@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hena_gym/constants/enums.dart';
-import 'package:hena_gym/utils/logger.dart';
+import '../../constants/enums.dart';
+import '../../utils/logger.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;

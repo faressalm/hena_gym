@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:hena_gym/data/models/my_user.dart';
-import 'package:hena_gym/data/services/auth_services.dart';
-import 'package:meta/meta.dart';
 
-part 'hena_gym_state.dart';
+import '../data/models/my_user.dart';
+import '../data/services/auth_services.dart';
+import 'auth/cubit/hena_gym_cubit.dart';
 
 class HenaGymCubit extends Cubit<HenaGymState> {
   final AuthServices authServices;

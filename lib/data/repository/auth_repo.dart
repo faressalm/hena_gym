@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hena_gym/constants/enums.dart';
-import 'package:hena_gym/data/models/my_user.dart';
-import 'package:hena_gym/data/services/auth_services.dart';
+import '../../constants/enums.dart';
+import '../models/my_user.dart';
+import '../services/auth_services.dart';
 
 class AuthRepository {
   final AuthServices authServices;
