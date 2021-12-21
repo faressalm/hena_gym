@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hena_gym/utils/logger.dart';
 
 import 'frontend/app_router.dart';
 
 void main() {
   runApp(HenaGym(appRouter: AppRouter()));
+  ApplicationLogger.getLogger("<main>").v("<gone through>");
 }
 
 class HenaGym extends StatelessWidget {
