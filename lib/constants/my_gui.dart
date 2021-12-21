@@ -20,7 +20,8 @@ var textInputDecoration = InputDecoration(
     borderSide: const BorderSide(color: MyColors.darkRed, width: 2.0),
     borderRadius: BorderRadius.circular(20.0),
   ),
-  focusedBorder: const OutlineInputBorder(
-    borderSide: BorderSide(color: MyColors.cyan, width: 2.0),
+  focusedBorder: OutlineInputBorder(
+    borderSide: const BorderSide(color: MyColors.cyan, width: 2.0),
+    borderRadius: BorderRadius.circular(20.0),
   ),
 );

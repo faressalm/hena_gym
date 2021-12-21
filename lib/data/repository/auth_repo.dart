@@ -28,7 +28,7 @@ class AuthRepository {
   }
 
   // create user obj based on firebase user
-  MyUser _userFromFirebaseUser(User? user) {
-    return MyUser(uid: user!.uid);
+  MyUser? _userFromFirebaseUser(User? user) {
+    return user != null ? MyUser(uid: user.uid) : null;
   }
 }
