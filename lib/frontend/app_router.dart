@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hena_gym/frontend/screens/wrapper.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../constants/strings.dart';
+import 'screens/authenticate/register.dart';
+import 'screens/wrapper.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
+      case wrapper:
         return MaterialPageRoute(builder: (_) => const Wrapper());
-      default:
+      case registerScreen:
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
     }
   }
 }

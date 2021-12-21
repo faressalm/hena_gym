@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class MyColors {
   static const Color white = Color(0xFFF7F7F7);
@@ -10,3 +11,16 @@ class MyColors {
   static const Color darkRed = Color(0xff860C0C);
   static const Color cyan = Color(0xff74E0EF);
 }
+
+var textInputDecoration = InputDecoration(
+  fillColor: Colors.white,
+  filled: true,
+  contentPadding: const EdgeInsets.all(12.0),
+  enabledBorder: OutlineInputBorder(
+    borderSide: const BorderSide(color: MyColors.darkRed, width: 2.0),
+    borderRadius: BorderRadius.circular(20.0),
+  ),
+  focusedBorder: const OutlineInputBorder(
+    borderSide: BorderSide(color: MyColors.cyan, width: 2.0),
+  ),
+);

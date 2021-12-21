@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "889814227093",
+    "project_id": "hena-gym",
+    "storage_bucket": "hena-gym.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889814227093:android:e41cd5b4b2e189f95da39c",
+        "android_client_info": {
+          "package_name": "com.example.hena_gym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889814227093-k8a716h71t4dlokfufsh2oap9h2cs7eg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1qLA_Cn5coTygFGpog-JdOy8NkFVtxjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889814227093-k8a716h71t4dlokfufsh2oap9h2cs7eg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
