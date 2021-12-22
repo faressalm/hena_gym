@@ -8,6 +8,8 @@
   static String emptyPhoneNumber='phone number can\'t be empty';
   static String wrongPhoneNumberFormat='phone number must be numeric';
   static String shortPhoneNumber= 'phone number must be longer than that';
+  static String emptyBirthDate='birth date can\'t be empty';
+  static String wrongBirthDateFormat='check birth date';
   static String? validateEmail(String?value){
     if(value!=null){
       if(value.isEmpty){
@@ -51,6 +53,17 @@
       }
       if(value.length<7){
         return shortPassword;
+      }
+    }
+    return null;
+  }
+  static String? validateBirthdate(String?value){
+    if(value!=null){
+      if(value.isEmpty){
+        return emptyBirthDate;
+      }
+      if(value.length!=11&&value.length!=12){
+        return wrongBirthDateFormat;
       }
     }
     return null;

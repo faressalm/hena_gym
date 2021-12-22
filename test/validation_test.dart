@@ -30,7 +30,7 @@ import 'package:hena_gym/frontend/screens/authenticate/validator.dart';
       var result = Validator.validatePhone('');
       expect(result, Validator.emptyPhoneNumber);
     });
-    test('alphabetics in phone number', (){
+    test('alphabetic in phone number', (){
       var result = Validator.validatePhone('1413afafajf23');
       expect(result, Validator.wrongPhoneNumberFormat);
     });
