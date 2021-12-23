@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hena_gym/business-logic/auth/login_cubit.dart';
 import 'hena_gym_layout.dart';
 import '../../data/models/my_user.dart';
 import 'package:provider/provider.dart';
-
-import 'authenticate/register.dart';
 import 'authenticate/sign_in.dart';
 
 class Wrapper extends StatelessWidget {

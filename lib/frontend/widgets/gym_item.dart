@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../constants/strings.dart';
+import '../../data/services/auth_services.dart';
 import '../../constants/my_gui.dart';
 import '../../data/models/gym.dart';
 
 class GymItem extends StatelessWidget {
   final Gym gym;
-
-  const GymItem({Key? key, required this.gym}) : super(key: key);
-
+  AuthServices auth = AuthServices(); //TODO:: delete
+  GymItem({Key? key, required this.gym}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

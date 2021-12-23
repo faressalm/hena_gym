@@ -29,9 +29,11 @@ class RegisterCubit extends Cubit<RegisterState> {
         .registerWithEmailAndPassword(
             email, userName, password, phone, birthDate, gender)
         .then((value) {
-      emit(RegisterSuccessState());
-    }).catchError((error) {
-      emit(RegisterErrorState());
+      if (value == null) {
+        emit(RegisterErrorState());
+      } else {
+        emit(RegisterSuccessState());
+      }
     });
   }
 }

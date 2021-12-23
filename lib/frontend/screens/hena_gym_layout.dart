@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hena_gym/constants/strings.dart';
+import 'package:hena_gym/data/services/auth_services.dart';
 import '../../business-logic/hena_gym_cubit.dart';
 import '../../constants/icon.dart';
 import '../../constants/my_gui.dart';
@@ -29,6 +31,25 @@ class _HenaGymLayoutState extends State<HenaGymLayout> {
               return Scaffold(
                 appBar: AppBar(
                   toolbarHeight: 40,
+                  actions: <Widget>[
+                    TextButton.icon(
+                      icon: const Icon(
+                        Icons.logout_rounded,
+                        color: MyColors.darkRed,
+                      ),
+                      label: const Text(
+                        '',
+                        style: TextStyle(
+                          color: MyColors.darkRed,
+                        ),
+                      ),
+                      onPressed: () async {
+                        AuthServices auth = AuthServices();
+                        await auth.signOut();
+                        Navigator.pushReplacementNamed(context, loginScreen);
+                      },
+                    ),
+                  ],
                   flexibleSpace: Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(

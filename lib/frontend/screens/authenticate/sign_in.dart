@@ -1,36 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hena_gym/business-logic/auth/login_cubit.dart';
-import 'package:hena_gym/constants/my_gui.dart';
-import 'package:hena_gym/data/repository/auth_repo.dart';
-import 'package:hena_gym/data/services/auth_services.dart';
-import 'package:hena_gym/frontend/screens/authenticate/forget_password.dart';
-import 'package:hena_gym/frontend/screens/authenticate/register.dart';
-import 'package:hena_gym/frontend/screens/authenticate/validator.dart';
-import 'package:hena_gym/utils/components.dart';
+import '../../../business-logic/auth/login_cubit.dart';
+import '../../../constants/my_gui.dart';
+import '../../../constants/strings.dart';
+import '../../../data/repository/auth_repo.dart';
+import '../../../data/services/auth_services.dart';
+import 'validator.dart';
+import '../../../utils/components.dart';
 
+// ignore: must_be_immutable
 class SignIn extends StatelessWidget {
-   SignIn({Key? key}) : super(key: key);
-   final emailController = TextEditingController();
-   final passwordController = TextEditingController();
-   final formKey = GlobalKey<FormState>();
-  AuthRepository authRepository = new AuthRepository(new AuthServices());
+  SignIn({Key? key}) : super(key: key);
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  AuthRepository authRepository = AuthRepository(AuthServices());
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (BuildContext context)=>LoginCubit(authRepository: authRepository),
-      child: BlocConsumer<LoginCubit,LoginState>(
-        listener: (context,state){
-          if(state is LoginErrorState){
-            showToast(text: 'wrong email or password', state: ToastStates.ERROR);
+    return BlocProvider(
+      create: (BuildContext context) =>
+          LoginCubit(authRepository: authRepository),
+      child: BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginErrorState) {
+            showToast(
+                text: 'wrong email or password', state: ToastStates.ERROR);
           }
-          if(state is LoginSuccessState){
+          if (state is LoginSuccessState) {
             showToast(text: 'successful login ', state: ToastStates.SUCCESS);
-            // TODO add screen of home.
-            //navigateAndFinish(context, //home());
+            Navigator.pushReplacementNamed(context, henaGymLayout);
           }
         },
-        builder: (context ,state){
-          var cubit= LoginCubit.get(context);
+        builder: (context, state) {
+          var cubit = LoginCubit.get(context);
           return Scaffold(
             body: SingleChildScrollView(
               child: Column(
@@ -44,11 +46,12 @@ class SignIn extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  Container(
+                  SizedBox(
                     width: 150,
                     height: 80,
-                    child: new Image.asset('assets/images/logo.png',
-                    fit: BoxFit.fill,
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      fit: BoxFit.fill,
                     ),
                   ),
                   const SizedBox(
@@ -57,17 +60,18 @@ class SignIn extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
-
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 5,
                             blurRadius: 7,
-                            offset: const Offset(0, 3), // changes position of shadow
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
                           ),
                         ],
                       ),
@@ -80,7 +84,6 @@ class SignIn extends StatelessWidget {
                               const SizedBox(
                                 height: 35,
                               ),
-
                               const SizedBox(
                                 height: 20,
                               ),
@@ -89,8 +92,7 @@ class SignIn extends StatelessWidget {
                                   decoration: textInputDecoration.copyWith(
                                       labelText: 'Email',
                                       suffixIcon: const Icon(Icons.email)),
-                                  validator: Validator.validateEmail
-                              ),
+                                  validator: Validator.validateEmail),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -99,9 +101,9 @@ class SignIn extends StatelessWidget {
                                   obscureText: true,
                                   decoration: textInputDecoration.copyWith(
                                       labelText: 'Password',
-                                      suffixIcon: const Icon(Icons.lock_outlined)),
-                                  validator: Validator.validatePassword
-                              ),
+                                      suffixIcon:
+                                          const Icon(Icons.lock_outlined)),
+                                  validator: Validator.validatePassword),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -116,7 +118,9 @@ class SignIn extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     if (formKey.currentState!.validate()) {
-                                      cubit.signIn(email: emailController.text, password: passwordController.text);
+                                      cubit.signIn(
+                                          email: emailController.text,
+                                          password: passwordController.text);
                                     }
                                   },
                                 ),
@@ -141,13 +145,12 @@ class SignIn extends StatelessWidget {
                                       primary: MyColors.darkRed,
                                     ),
                                     onPressed: () {
-                                      navigateTo(context, RegisterScreen());
+                                      Navigator.pushNamed(
+                                          context, registerScreen);
                                     },
                                   )
                                 ],
                               ),
-
-
                               TextButton(
                                 child: const Text(
                                   'forget password ?',
@@ -158,7 +161,8 @@ class SignIn extends StatelessWidget {
                                   primary: MyColors.darkRed,
                                 ),
                                 onPressed: () {
-                                  navigateTo(context, ForgetPasswordScreen());
+                                  Navigator.pushNamed(
+                                      context, forgetPasswordScreen);
                                 },
                               ),
                               const SizedBox(

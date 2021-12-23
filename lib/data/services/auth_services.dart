@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../models/my_user.dart';
-import '../../constants/enums.dart';
+
 import '../../utils/logger.dart';
+import '../models/my_user.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -16,6 +16,8 @@ class AuthServices {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      ApplicationLogger.getLogger("<signInWithEmailAndPassword>")
+          .v("sign in successfuly");
       return result.user;
     } catch (error) {
       ApplicationLogger.getLogger("<signInWithEmailAndPassword>")
@@ -42,7 +44,8 @@ class AuthServices {
             .doc(result.user!.uid)
             .set(newUser.toMap());
       }
-
+      ApplicationLogger.getLogger("<registerWithEmailAndPassword>")
+          .v("register successfuly");
       return result.user;
     } catch (error) {
       ApplicationLogger.getLogger("<registerWithEmailAndPassword>")
@@ -50,12 +53,15 @@ class AuthServices {
       return null;
     }
   }
-  Future sendResetEmail(String email)async{
+
+  Future sendResetEmail(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
   }
+
   Future signOut() async {
     try {
       await _auth.signOut();
+      ApplicationLogger.getLogger("<signOut>").v("signOut successfuly");
     } catch (e) {
       ApplicationLogger.getLogger("<signOut>").v(e.toString());
     }

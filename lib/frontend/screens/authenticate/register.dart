@@ -2,17 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hena_gym/business-logic/auth/register_cubit.dart';
-import 'package:hena_gym/constants/enums.dart';
-import 'package:hena_gym/data/repository/auth_repo.dart';
-import 'package:hena_gym/data/services/auth_services.dart';
-import 'package:hena_gym/frontend/screens/authenticate/sign_in.dart';
-import 'package:hena_gym/frontend/screens/authenticate/validator.dart';
-import 'package:hena_gym/utils/components.dart';
+import '../../../business-logic/auth/register_cubit.dart';
+import '../../../constants/enums.dart';
+import '../../../constants/strings.dart';
+import '../../../data/repository/auth_repo.dart';
+import '../../../data/services/auth_services.dart';
+import 'sign_in.dart';
+import 'validator.dart';
+import '../../../utils/components.dart';
 import '../../../constants/my_gui.dart';
 import 'package:intl/intl.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
+// ignore: must_be_immutable
 class RegisterScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
@@ -23,7 +25,7 @@ class RegisterScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
 
   RegisterScreen({Key? key}) : super(key: key);
-  AuthRepository authRepository = new AuthRepository(new AuthServices());
+  AuthRepository authRepository = AuthRepository(AuthServices());
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -34,7 +36,7 @@ class RegisterScreen extends StatelessWidget {
           if (state is RegisterSuccessState) {
             showToast(
                 text: "Registered Successfully", state: ToastStates.SUCCESS);
-            navigateAndFinish(context, Container());
+            Navigator.pushReplacementNamed(context, henaGymLayout);
           }
           if (state is RegisterErrorState) {
             showToast(text: "cannot register", state: ToastStates.ERROR);
@@ -228,7 +230,7 @@ class RegisterScreen extends StatelessWidget {
                                         primary: MyColors.darkRed,
                                       ),
                                       onPressed: () {
-                                        navigateTo(context, SignIn());
+                                        Navigator.pop(context);
                                       },
                                     )
                                   ],

@@ -24,18 +24,8 @@ class HenaGymCubit extends Cubit<HenaGymState> {
                 gymSevices: GymSevices(_firebaseFirestore))),
         child: const ShowGym(),
       ),
-      BlocProvider(
-        create: (context) => ShowGymCubit(
-            gymServicesRepository: GymServicesRepository(
-                gymSevices: GymSevices(_firebaseFirestore))),
-        child: const ShowGym(),
-      ),
-      BlocProvider(
-        create: (context) => ShowGymCubit(
-            gymServicesRepository: GymServicesRepository(
-                gymSevices: GymSevices(_firebaseFirestore))),
-        child: const ShowGym(),
-      )
+      Container(),
+      Container(),
     ];
     titles = ['Find Your Gym', 'Market', 'Set Your Goal'];
   }
