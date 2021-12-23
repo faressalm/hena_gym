@@ -38,11 +38,13 @@ class _ShowGymState extends State<ShowGym> {
   Widget buildLoadedListWidgets() {
     return SingleChildScrollView(
       child: Container(
-        height: allGyms.length / 2 * 350,
         color: MyColors.white,
         child: Column(
           children: [
             buildGymsList(),
+            const SizedBox(
+              height: 65,
+            )
           ],
         ),
       ),

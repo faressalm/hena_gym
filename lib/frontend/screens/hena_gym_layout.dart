@@ -29,6 +29,7 @@ class _HenaGymLayoutState extends State<HenaGymLayout> {
             builder: (context, state) {
               var cubit = HenaGymCubit.get(context);
               return Scaffold(
+                resizeToAvoidBottomInset: false,
                 appBar: AppBar(
                   toolbarHeight: 40,
                   actions: <Widget>[
@@ -75,29 +76,26 @@ class _HenaGymLayoutState extends State<HenaGymLayout> {
                     topRight: Radius.circular(25),
                     topLeft: Radius.circular(25),
                   ),
-                  child: SizedBox(
-                    height: 50,
-                    child: BottomNavigationBar(
-                      fixedColor: MyColors.cyan,
-                      iconSize: 20,
-                      selectedFontSize: 12,
-                      unselectedFontSize: 12,
-                      unselectedItemColor: MyColors.white,
-                      backgroundColor: MyColors.darkBlue,
-                      currentIndex: cubit.currentIndex,
-                      onTap: (index) {
-                        cubit.changeBottomNav(index);
-                      },
-                      items: const [
-                        BottomNavigationBarItem(
-                            icon: Icon(CustomIcon.dumbbell), label: "Gym Home"),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.store), label: "Market"),
-                        BottomNavigationBarItem(
-                            icon: Icon(CustomIcon.salad),
-                            label: "Nutrition Plan"),
-                      ],
-                    ),
+                  child: BottomNavigationBar(
+                    fixedColor: MyColors.cyan,
+                    iconSize: 20,
+                    selectedFontSize: 12,
+                    unselectedFontSize: 12,
+                    unselectedItemColor: MyColors.white,
+                    backgroundColor: MyColors.darkBlue,
+                    currentIndex: cubit.currentIndex,
+                    onTap: (index) {
+                      cubit.changeBottomNav(index);
+                    },
+                    items: const [
+                      BottomNavigationBarItem(
+                          icon: Icon(CustomIcon.dumbbell), label: "Gym Home"),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.store), label: "Market"),
+                      BottomNavigationBarItem(
+                          icon: Icon(CustomIcon.salad),
+                          label: "Nutrition Plan"),
+                    ],
                   ),
                 ),
               );

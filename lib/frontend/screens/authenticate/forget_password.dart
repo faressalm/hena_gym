@@ -34,75 +34,70 @@ class ForgetPasswordScreen extends StatelessWidget {
             var cubit = ForgetCubit.get(context);
             return Scaffold(
                 resizeToAvoidBottomInset: false,
-                body: SizedBox(
-                  height: double.infinity,
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        "assets/images/header.png",
-                        height: 70,
-                        width: double.infinity,
-                        fit: BoxFit.fill,
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.6,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 150,
-                              height: 80,
-                              child: Image.asset(
-                                'assets/images/logo.png',
-                                fit: BoxFit.fill,
+                body: Column(
+                  children: [
+                    Image.asset(
+                      "assets/images/header.png",
+                      height: 70,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 150,
+                            height: 80,
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Form(
+                              key: formKey,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  TextFormField(
+                                      controller: emailController,
+                                      decoration: textInputDecoration.copyWith(
+                                          labelText:
+                                              'The email you registered with',
+                                          suffixIcon: const Icon(Icons.email)),
+                                      validator: Validator.validateEmail),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  SizedBox(
+                                    height: 40.0,
+                                    width: 140.0,
+                                    child: TextButton(
+                                      child: const Text('send request'),
+                                      style: TextButton.styleFrom(
+                                        primary: Colors.white,
+                                        backgroundColor: MyColors.darkBlue,
+                                      ),
+                                      onPressed: () {
+                                        if (formKey.currentState!.validate()) {
+                                          cubit.sendResetEmail(
+                                            email: emailController.text,
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Form(
-                                key: formKey,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    TextFormField(
-                                        controller: emailController,
-                                        decoration: textInputDecoration.copyWith(
-                                            labelText:
-                                                'The email you registered with',
-                                            suffixIcon:
-                                                const Icon(Icons.email)),
-                                        validator: Validator.validateEmail),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    SizedBox(
-                                      height: 40.0,
-                                      width: 140.0,
-                                      child: TextButton(
-                                        child: const Text('send request'),
-                                        style: TextButton.styleFrom(
-                                          primary: Colors.white,
-                                          backgroundColor: MyColors.darkBlue,
-                                        ),
-                                        onPressed: () {
-                                          if (formKey.currentState!
-                                              .validate()) {
-                                            cubit.sendResetEmail(
-                                              email: emailController.text,
-                                            );
-                                          }
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ));
           },
         ));
