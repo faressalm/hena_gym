@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:hena_gym/business-logic/auth/login_cubit.dart';
 import '../../data/models/my_user.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +14,7 @@ class Wrapper extends StatelessWidget {
     final user = Provider.of<MyUser?>(context);
 
     return user == null
-        ? RegisterScreen()
-        : Container(); // TODO:: Container-> home
+        ? SignIn()
+        : Container(child: Text('afadfa'),); // TODO:: Container-> home
   }
 }

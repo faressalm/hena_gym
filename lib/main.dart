@@ -26,10 +26,9 @@ class HenaGym extends StatelessWidget {
       value: AuthRepository(AuthServices()).user,
       initialData: null,
       child: MaterialApp(
-        //debugShowCheckedModeBanner: false,
-        //onGenerateRoute: appRouter.generateRoute,
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: appRouter.generateRoute,
         theme: ThemeData(primarySwatch: buildMaterialColor(MyColors.darkRed)),
-        home: RegisterScreen(),
       ),
     );
   }

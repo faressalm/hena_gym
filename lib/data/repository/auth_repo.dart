@@ -26,6 +26,9 @@ class AuthRepository {
   Future<void> signOut() async {
     await authServices.signOut();
   }
+  Future<void> sendResetEmail(String email)async{
+    await authServices.sendResetEmail(email);
+  }
 
   // create user obj based on firebase user
   MyUser? _userFromFirebaseUser(User? user) {
