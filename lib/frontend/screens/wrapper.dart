@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hena_gym/business-logic/auth/login_cubit.dart';
+import 'hena_gym_layout.dart';
 import '../../data/models/my_user.dart';
 import 'package:provider/provider.dart';
 
@@ -12,9 +13,6 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<MyUser?>(context);
-
-    return user == null
-        ? SignIn()
-        : Container(child: Text('afadfa'),); // TODO:: Container-> home
+    return user == null ? SignIn() : const HenaGymLayout();
   }
 }

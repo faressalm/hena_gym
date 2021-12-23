@@ -16,10 +16,10 @@ class AuthRepository {
     return user != null ? _userFromFirebaseUser(user) : null;
   }
 
-  Future<MyUser?> registerWithEmailAndPassword(String email,String userName, String password,
-      String phone, String birthDate, String gender) async {
+  Future<MyUser?> registerWithEmailAndPassword(String email, String userName,
+      String password, String phone, String birthDate, String gender) async {
     User? user = await authServices.registerWithEmailAndPassword(
-        email,userName, password, phone, birthDate, gender);
+        email, userName, password, phone, birthDate, gender);
     return user != null ? _userFromFirebaseUser(user) : null;
   }
 
