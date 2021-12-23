@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hena_gym/frontend/screens/authenticate/register.dart';
+import 'frontend/screens/authenticate/register.dart';
 import 'package:provider/provider.dart';
 import 'data/models/my_user.dart';
 import 'data/repository/auth_repo.dart';
@@ -26,10 +26,9 @@ class HenaGym extends StatelessWidget {
       value: AuthRepository(AuthServices()).user,
       initialData: null,
       child: MaterialApp(
-        //debugShowCheckedModeBanner: false,
-        //onGenerateRoute: appRouter.generateRoute,
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: appRouter.generateRoute,
         theme: ThemeData(primarySwatch: buildMaterialColor(MyColors.darkRed)),
-        home: RegisterScreen(),
       ),
     );
   }

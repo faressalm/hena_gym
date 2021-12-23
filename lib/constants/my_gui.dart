@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class MyColors {
   static const Color white = Color(0xFFF7F7F7);
+  static const Color lightWhite = Color(0x99F7F7F7);
   static const Color lightGray = Color(0xffB2B2B2);
   static const Color gray = Color(0xff6F6F6F);
   static const Color grayBlue = Color(0xff373B59);

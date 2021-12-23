@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'hena_gym_layout.dart';
 import '../../data/models/my_user.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +13,6 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<MyUser?>(context);
 
-    return user == null
-        ? RegisterScreen()
-        : Container(); // TODO:: Container-> home
+    return user == null ? const HenaGymLayout() : const HenaGymLayout();
   }
 }
