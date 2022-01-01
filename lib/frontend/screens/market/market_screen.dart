@@ -37,7 +37,14 @@ class MarketScreen extends StatelessWidget{
   Widget  buildGridProduct(Product product)=>Padding(
     padding: const EdgeInsets.all(6.0),
     child: Container(
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: MyColors.darkRed,
+          width: 0.7
+        ),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       child: Column(
         children: [
           Stack(
