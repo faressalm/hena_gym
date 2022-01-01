@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../constants/strings.dart';
-import '../../data/services/auth_services.dart';
 import '../../constants/my_gui.dart';
 import '../../data/models/gym.dart';
 
 class GymItem extends StatelessWidget {
   final Gym gym;
-  AuthServices auth = AuthServices(); //TODO:: delete
-  GymItem({Key? key, required this.gym}) : super(key: key);
+  const GymItem({Key? key, required this.gym}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,6 +18,8 @@ class GymItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: InkWell(
+        onTap: () =>
+            Navigator.pushNamed(context, gymDetailedScreen, arguments: gym),
         child: GridTile(
           child: Hero(
             tag: gym.gymId,

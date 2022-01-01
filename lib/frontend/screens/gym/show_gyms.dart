@@ -71,6 +71,6 @@ class _ShowGymState extends State<ShowGym> {
 
   @override
   Widget build(BuildContext context) {
-    return buildBlocWidget();
+    return Scaffold(body: buildBlocWidget());
   }
 }
