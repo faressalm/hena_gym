@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hena_gym/frontend/screens/market/market_screen.dart';
 import 'gym/show_gym_cubit.dart';
 import '../data/repository/gym_repo.dart';
 import '../data/services/gym_services.dart';
@@ -21,10 +22,10 @@ class HenaGymCubit extends Cubit<HenaGymState> {
       BlocProvider(
         create: (context) => ShowGymCubit(
             gymServicesRepository: GymServicesRepository(
-                gymSevices: GymSevices(_firebaseFirestore))),
+                gymServices: GymServices(_firebaseFirestore))),
         child: const ShowGym(),
       ),
-      Container(),
+      MarketScreen(),
       Container(),
     ];
     titles = ['Find Your Gym', 'Market', 'Set Your Goal'];

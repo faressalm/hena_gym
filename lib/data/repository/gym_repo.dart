@@ -2,11 +2,11 @@ import '../models/gym.dart';
 import '../services/gym_services.dart';
 
 class GymServicesRepository {
-  final GymSevices gymSevices;
+  final GymServices gymServices;
 
-  GymServicesRepository({required this.gymSevices});
+  GymServicesRepository({required this.gymServices});
   Future<List<Gym>?> getAllGyms() async {
-    List<dynamic> gymsQuery = await gymSevices.getAllGyms();
+    List<dynamic> gymsQuery = await gymServices.getAllGyms();
     return gymsQuery.map(_mapToGym).toList();
   }
 
