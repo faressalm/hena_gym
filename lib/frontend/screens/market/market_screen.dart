@@ -54,11 +54,10 @@ class MarketScreen extends StatelessWidget{
           Stack(
             alignment: AlignmentDirectional.bottomStart,
             children: [
-              Image(
-                image: NetworkImage(product.imageURL),
+              Container(
+                height: 200,
                 width: double.infinity,
-                height: 200.0,
-              ),
+                  child: FadeInImage.assetNetwork(image:product.imageURL , placeholder:'assets/images/loading.gif')),
               if(product.offer!='none')
                  Container(
                    color: Colors.red,
