@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,15 +22,18 @@ class MarketScreen extends StatelessWidget{
         },
         builder: (context,state){
           var cubit = MarketCubit.get(context);
-          return GridView.count(crossAxisCount: 2,
-          mainAxisSpacing: 1.0,
-          crossAxisSpacing: 1.0,
-          childAspectRatio: 3/4.5,
-          shrinkWrap: true,
+          return ConditionalBuilder(
+              condition: cubit.products.length!=0,
+              builder: (context)=> GridView.count(crossAxisCount: 2,
+            mainAxisSpacing: 1.0,
+            crossAxisSpacing: 1.0,
+            childAspectRatio: 1/1.5,
+            shrinkWrap: true,
             children: List.generate(
                 cubit.products.length,
                     (index) =>buildGridProduct(cubit.products[index])),
-          );
+          ),
+              fallback:(context)=>Center(child: CircularProgressIndicator()) );
         },
       ),
     );
