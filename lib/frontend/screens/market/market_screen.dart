@@ -10,96 +10,92 @@ import 'package:hena_gym/data/models/product.dart';
 import 'package:hena_gym/data/repository/marekt_repo.dart';
 import 'package:hena_gym/data/services/market_services.dart';
 
-class MarketScreen extends StatelessWidget{
-  MarketServicesRepository marketRepository = MarketServicesRepository(marketSevices: MarketServices(FirebaseFirestore.instance));
+class MarketScreen extends StatelessWidget {
+  MarketServicesRepository marketRepository = MarketServicesRepository(
+      marketSevices: MarketServices(FirebaseFirestore.instance));
   @override
   Widget build(BuildContext context) {
-    
-    return BlocProvider(create:(BuildContext context)=> MarketCubit(marketServicesRepository: marketRepository)..getAllProducts(),
-      child: BlocConsumer<MarketCubit,MarketState>(
-        listener: (context,build){
-          
-        },
-        builder: (context,state){
+    return BlocProvider(
+      create: (BuildContext context) =>
+          MarketCubit(marketServicesRepository: marketRepository)
+            ..getAllProducts(),
+      child: BlocConsumer<MarketCubit, MarketState>(
+        listener: (context, build) {},
+        builder: (context, state) {
           var cubit = MarketCubit.get(context);
           return ConditionalBuilder(
-              condition: cubit.products.length!=0,
-              builder: (context)=> GridView.count(crossAxisCount: 2,
-            mainAxisSpacing: 1.0,
-            crossAxisSpacing: 1.0,
-            childAspectRatio: 1/1.5,
-            shrinkWrap: true,
-            children: List.generate(
-                cubit.products.length,
-                    (index) =>buildGridProduct(cubit.products[index])),
-          ),
-              fallback:(context)=>Center(child: CircularProgressIndicator()) );
+              condition: cubit.products.isNotEmpty,
+              builder: (context) => GridView.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 1.0,
+                    crossAxisSpacing: 1.0,
+                    childAspectRatio: 1 / 1.5,
+                    shrinkWrap: true,
+                    children: List.generate(cubit.products.length,
+                        (index) => buildGridProduct(cubit.products[index])),
+                  ),
+              fallback: (context) =>
+                  const Center(child: CircularProgressIndicator()));
         },
       ),
     );
   }
-  Widget  buildGridProduct(Product product)=>Padding(
-    padding: const EdgeInsets.all(6.0),
-    child: Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(
-          color: MyColors.darkRed,
-          width: 0.7
-        ),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-        children: [
-          Stack(
-            alignment: AlignmentDirectional.bottomStart,
-            children: [
-              Container(
-                height: 200,
-                width: double.infinity,
-                  child: FadeInImage.assetNetwork(image:product.imageURL , placeholder:'assets/images/loading.gif')),
-              if(product.offer!='none')
-                 Container(
-                   color: Colors.red,
-                   padding: EdgeInsets.symmetric(horizontal: 5.0),
-                   child: Text(
-                     'DISCOUNT',
-                     style: TextStyle(
-                         fontSize: 10.0,
-                         color: Colors.white
-                     ),
-                   ),
-                 )
-            ],
+
+  Widget buildGridProduct(Product product) => Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: MyColors.darkRed, width: 0.7),
+            borderRadius: BorderRadius.circular(10.0),
           ),
-          Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Stack(
+                alignment: AlignmentDirectional.bottomStart,
                 children: [
-                  Text(
-                    product.name,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: MyColors.darkRed,
-                      fontSize: 14.0,
-                      height: 1.3
-                    ),
-                  ),
-                  Text(
-                    product.price,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      color: MyColors.cyan
+                  SizedBox(
+                      width: double.infinity,
+                      child: FadeInImage.assetNetwork(
+                          height: 150,
+                          image: product.imageURL,
+                          placeholder: 'assets/images/loading.gif')),
+                  Visibility(
+                    visible: product.offer != 'none',
+                    child: Container(
+                      color: Colors.red,
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      child: const Text(
+                        'DISCOUNT',
+                        style: TextStyle(fontSize: 10.0, color: MyColors.white),
+                      ),
                     ),
                   )
                 ],
-
               ),
-          )
-        ],
-      ),
-    ),
-  );
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  children: [
+                    Text(
+                      product.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          color: MyColors.darkRed, fontSize: 14.0, height: 1.3),
+                    ),
+                    Text(
+                      product.price,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          const TextStyle(fontSize: 12.0, color: MyColors.cyan),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      );
 }

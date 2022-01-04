@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hena_gym/data/models/gym.dart';
+import 'package:hena_gym/data/repository/url_repo.dart';
+import 'package:hena_gym/data/services/url_services.dart';
+import 'package:hena_gym/frontend/screens/gym/gym_detailed_screen.dart';
 import 'screens/authenticate/forget_password.dart';
 import 'screens/authenticate/sign_in.dart';
 import 'screens/hena_gym_layout.dart';
@@ -8,6 +12,8 @@ import 'screens/authenticate/register.dart';
 import 'screens/wrapper.dart';
 
 class AppRouter {
+  URLRepository urlRepository = URLRepository(urlServices: URLServices());
+
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case wrapper:
@@ -20,6 +26,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => ForgetPasswordScreen());
       case henaGymLayout:
         return MaterialPageRoute(builder: (_) => const HenaGymLayout());
+      case gymDetailedScreen:
+        final gym = settings.arguments as Gym;
+        return MaterialPageRoute(
+            builder: (_) => GymDetailedScreen(
+                  gym: gym,
+                  urlRepository: urlRepository,
+                ));
     }
   }
 }

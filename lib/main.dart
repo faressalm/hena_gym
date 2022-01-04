@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'frontend/screens/authenticate/register.dart';
 import 'package:provider/provider.dart';
 import 'data/models/my_user.dart';
 import 'data/repository/auth_repo.dart';
