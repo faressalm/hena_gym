@@ -3,27 +3,29 @@ import 'package:hena_gym/utils/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class URLServices {
-  Future<void> accessPhone(phoneNumber) async {
+  Future<bool> accessPhone(phoneNumber) async {
     final url = 'tel:$phoneNumber';
-    await lancher(url, false);
+    return await lancher(url, false);
   }
 
-  Future<void> accessLink(link) async {
-    await lancher(link, true);
+  Future<bool> accessLink(link) async {
+    return await lancher(link, true);
   }
 
-  Future<void> acessLocation(GeoPoint geoPoint) async {
+  Future<bool> acessLocation(GeoPoint geoPoint) async {
     String googleUrl =
         'https://www.google.com/maps/search/?api=1&query=${geoPoint.latitude},${geoPoint.longitude}';
-    await lancher(googleUrl, false);
+    return await lancher(googleUrl, false);
   }
 
-  Future<void> lancher(url, inApp) async {
+  Future<bool> lancher(url, inApp) async {
     if (await canLaunch(url)) {
       await launch(url,
           forceWebView: inApp, forceSafariVC: inApp, enableJavaScript: inApp);
+      return true;
     } else {
       ApplicationLogger.getLogger("<lancher>").v("<Filed>");
+      return false;
     }
   }
 }

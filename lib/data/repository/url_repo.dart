@@ -5,15 +5,15 @@ class URLRepository {
   final URLServices urlServices;
 
   URLRepository({required this.urlServices});
-  Future<void> accessPhone(phoneNumber) async {
-    await urlServices.accessPhone(phoneNumber);
+  Future<bool> accessPhone(phoneNumber) async {
+    return await urlServices.accessPhone(phoneNumber);
   }
 
-  Future<void> accessLink(link) async {
-    await urlServices.accessLink(link);
+  Future<bool> accessLink(link) async {
+    return await urlServices.accessLink(link);
   }
 
-  Future<void> accessLocation(geoPoint) async {
-    await urlServices.acessLocation(geoPoint);
+  Future<bool> accessLocation(geoPoint) async {
+    return await urlServices.acessLocation(geoPoint);
   }
 }

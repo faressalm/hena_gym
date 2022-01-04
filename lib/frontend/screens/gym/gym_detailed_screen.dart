@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hena_gym/constants/my_gui.dart';
+import 'package:hena_gym/constants/strings.dart';
 import 'package:hena_gym/data/models/gym.dart';
 import 'package:hena_gym/data/repository/url_repo.dart';
+import 'package:hena_gym/frontend/screens/authenticate/validator.dart';
 import 'package:hena_gym/frontend/widgets/custom_information_text.dart';
 import 'package:hena_gym/frontend/widgets/custom_silver_app_bar.dart';
+import 'package:hena_gym/utils/components.dart';
 
 class GymDetailedScreen extends StatelessWidget {
   final Gym gym;
@@ -12,6 +15,30 @@ class GymDetailedScreen extends StatelessWidget {
   const GymDetailedScreen(
       {Key? key, required this.gym, required this.urlRepository})
       : super(key: key);
+
+  Future<void> builURLActions(title) async {
+    bool isSuccess;
+    switch (title) {
+      case linkURL:
+        isSuccess = await urlRepository.accessLink(gym.contactEmail);
+        break;
+      case phoneNumberURL:
+        isSuccess = Validator.isValidPhoneNumber(gym.contactNumber)
+            ? await urlRepository.accessPhone(gym.contactNumber)
+            : false;
+        break;
+      case locationURL:
+        isSuccess = await urlRepository.accessLocation(gym.location);
+        break;
+      default:
+        isSuccess = false;
+    }
+
+    isSuccess
+        ? showToast(text: "Opens the $title", state: ToastStates.SUCCESS)
+        : showToast(
+            text: "Couldn't access this $title", state: ToastStates.ERROR);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +66,7 @@ class GymDetailedScreen extends StatelessWidget {
                         children: [
                           IconButton(
                               onPressed: () async {
-                                await urlRepository
-                                    .accessPhone(gym.contactNumber);
+                                await builURLActions(phoneNumberURL);
                               },
                               icon: const Icon(
                                 Icons.call,
@@ -49,8 +75,7 @@ class GymDetailedScreen extends StatelessWidget {
                               )),
                           IconButton(
                               onPressed: () async {
-                                await urlRepository
-                                    .accessLink(gym.contactEmail);
+                                await builURLActions(linkURL);
                               },
                               icon: const Icon(
                                 Icons.facebook_rounded,
@@ -59,8 +84,7 @@ class GymDetailedScreen extends StatelessWidget {
                               )),
                           IconButton(
                               onPressed: () async {
-                                await urlRepository
-                                    .accessLocation(gym.location);
+                                await builURLActions(locationURL);
                               },
                               icon: const Icon(
                                 Icons.location_on,

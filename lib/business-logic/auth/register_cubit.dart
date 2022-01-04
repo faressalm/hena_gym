@@ -1,9 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../constants/enums.dart';
-import '../../data/models/my_user.dart';
 import '../../data/repository/auth_repo.dart';
 import 'package:meta/meta.dart';
 

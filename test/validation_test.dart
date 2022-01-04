@@ -77,4 +77,25 @@ void main() {
     var result = Validator.validateBirthdate('adfs');
     expect(result, Validator.wrongBirthDateFormat);
   });
+  test('wrong phone number with alph', () {
+    var result = Validator.isValidPhoneNumber('adfss0121s');
+    expect(result, false);
+  });
+  test('wrong phone number with small size', () {
+    var result = Validator.isValidPhoneNumber('1234');
+    expect(result, false);
+  });
+  test('wrong phone number with large size', () {
+    var result =
+        Validator.isValidPhoneNumber('1213213132132154545454646464613131');
+    expect(result, false);
+  });
+  test('wrong phone number with empty size', () {
+    var result = Validator.isValidPhoneNumber('');
+    expect(result, false);
+  });
+  test('valid phone number', () {
+    var result = Validator.isValidPhoneNumber('+20100543207');
+    expect(result, true);
+  });
 }

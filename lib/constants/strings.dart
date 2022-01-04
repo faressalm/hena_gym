@@ -4,3 +4,6 @@ const forgetPasswordScreen = '/forget_password';
 const henaGymLayout = '/layout';
 const wrapper = '/';
 const gymDetailedScreen = "/gym_detailed";
+const linkURL = 'link';
+const phoneNumberURL = 'phone number';
+const locationURL = 'location';
