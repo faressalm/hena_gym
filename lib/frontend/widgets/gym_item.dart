@@ -14,7 +14,7 @@ class GymItem extends StatelessWidget {
       margin: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
       padding: const EdgeInsetsDirectional.all(4),
       decoration: BoxDecoration(
-        color: MyColors.grayBlue,
+        color: MyColors.greyBlue,
         borderRadius: BorderRadius.circular(20),
       ),
       child: InkWell(

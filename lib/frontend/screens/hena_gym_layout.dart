@@ -30,45 +30,6 @@ class _HenaGymLayoutState extends State<HenaGymLayout> {
               var cubit = HenaGymCubit.get(context);
               return Scaffold(
                 resizeToAvoidBottomInset: false,
-                appBar: AppBar(
-                  toolbarHeight: 40,
-                  actions: <Widget>[
-                    TextButton.icon(
-                      icon: const Icon(
-                        Icons.logout_rounded,
-                        color: MyColors.darkRed,
-                      ),
-                      label: const Text(
-                        '',
-                        style: TextStyle(
-                          color: MyColors.darkRed,
-                        ),
-                      ),
-                      onPressed: () async {
-                        AuthServices auth = AuthServices();
-                        await auth.signOut();
-                        Navigator.pushReplacementNamed(context, loginScreen);
-                      },
-                    ),
-                  ],
-                  flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20)),
-                    ),
-                  ),
-                  elevation: 0.0,
-                  backgroundColor: Colors.transparent,
-                  centerTitle: true,
-                  title: Text(
-                    cubit.titles[cubit.currentIndex],
-                    style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                            color: MyColors.darkBlue,
-                            fontWeight: FontWeight.w600)),
-                  ),
-                ),
                 body: cubit.screens[cubit.currentIndex],
                 extendBody: true,
                 bottomNavigationBar: ClipRRect(

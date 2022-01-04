@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hena_gym/constants/strings.dart';
+import 'package:hena_gym/data/services/auth_services.dart';
+import 'package:hena_gym/frontend/widgets/search_field.dart';
 import '../../../business-logic/gym/show_gym_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants/my_gui.dart';
@@ -16,6 +20,80 @@ class ShowGym extends StatefulWidget {
 
 class _ShowGymState extends State<ShowGym> {
   late List<Gym> allGyms;
+
+  late List<Gym> searchedForGyms;
+  bool _isSearching = false;
+  final _searchTextController = TextEditingController();
+
+  void addSearchedForItemsToSearchedList(String searchedGyms) {
+    searchedForGyms = allGyms
+        .where((gym) => gym.name.toLowerCase().contains(searchedGyms))
+        .toList();
+    setState(() {});
+  }
+
+  List<Widget> _buildAppBarActions() {
+    if (_isSearching) {
+      return [
+        IconButton(
+          onPressed: () {
+            _clearSearch();
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.clear, color: MyColors.darkBlue),
+        ),
+      ];
+    } else {
+      return [
+        TextButton.icon(
+          icon: const Icon(
+            Icons.logout_rounded,
+            color: MyColors.darkRed,
+          ),
+          label: const Text(
+            '',
+            style: TextStyle(
+              color: MyColors.darkRed,
+            ),
+          ),
+          onPressed: () async {
+            AuthServices auth = AuthServices();
+            await auth.signOut();
+            Navigator.pushReplacementNamed(context, loginScreen);
+          },
+        ),
+        IconButton(
+          onPressed: _startSearch,
+          icon: const Icon(
+            Icons.search,
+            color: MyColors.darkBlue,
+          ),
+        ),
+      ];
+    }
+  }
+
+  void _startSearch() {
+    ModalRoute.of(context)!
+        .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
+    setState(() {
+      _isSearching = true;
+    });
+  }
+
+  void _stopSearching() {
+    _clearSearch();
+    setState(() {
+      _isSearching = false;
+    });
+  }
+
+  void _clearSearch() {
+    setState(() {
+      _searchTextController.clear();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -62,15 +140,58 @@ class _ShowGymState extends State<ShowGym> {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       padding: EdgeInsets.zero,
-      itemCount: allGyms.length,
+      itemCount: _searchTextController.text.isEmpty
+          ? allGyms.length
+          : searchedForGyms.length,
       itemBuilder: (ctx, index) {
-        return GymItem(gym: allGyms[index]);
+        return GymItem(
+          gym: _searchTextController.text.isEmpty
+              ? allGyms[index]
+              : searchedForGyms[index],
+        );
       },
+    );
+  }
+
+  Widget _buildAppBarTitle() {
+    return Text(
+      'Gyms',
+      style: GoogleFonts.poppins(
+          textStyle: const TextStyle(
+              color: MyColors.darkBlue, fontWeight: FontWeight.w600)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: buildBlocWidget());
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          toolbarHeight: 40,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20)),
+            ),
+          ),
+          elevation: 0.0,
+          leading: _isSearching
+              ? const BackButton(
+                  color: MyColors.darkBlue,
+                )
+              : const SizedBox.shrink(),
+          centerTitle: true,
+          title: _isSearching
+              ? SearchFiled(
+                  searchTextController: _searchTextController,
+                  searchFunction: addSearchedForItemsToSearchedList,
+                  hintText: 'Find a Gym...',
+                )
+              : _buildAppBarTitle(),
+          actions: _buildAppBarActions(),
+        ),
+        body: buildBlocWidget());
   }
 }
