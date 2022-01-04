@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class GymServices {
+class MarketServices {
   final FirebaseFirestore _firebaseFirestore;
   late CollectionReference postsCollection;
-  GymServices(this._firebaseFirestore) {
-    postsCollection = _firebaseFirestore.collection("gyms");
+  MarketServices(this._firebaseFirestore) {
+    postsCollection = _firebaseFirestore.collection("products");
   }
-  Future<List<dynamic>> getAllGyms() async {
+  Future<List<dynamic>> getAllProducts() async {
     QuerySnapshot gymsQuery = await postsCollection.get();
     return gymsQuery.docs.map((e) => e.data()).toList();
   }
