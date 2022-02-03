@@ -27,8 +27,9 @@ class HenaGymCubit extends Cubit<HenaGymState> {
       ),
       MarketScreen(),
       Container(),
+      Container()
     ];
-    titles = ['Find Your Gym', 'Market', 'Set Your Goal'];
+    titles = ['Find Your Gym', 'Market', 'Set Your Goal', ""];
   }
 
   void changeBottomNav(int index) {

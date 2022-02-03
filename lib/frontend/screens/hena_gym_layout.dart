@@ -39,9 +39,6 @@ class _HenaGymLayoutState extends State<HenaGymLayout> {
                   ),
                   child: BottomNavigationBar(
                     fixedColor: MyColors.cyan,
-                    iconSize: 20,
-                    selectedFontSize: 12,
-                    unselectedFontSize: 12,
                     unselectedItemColor: MyColors.white,
                     backgroundColor: MyColors.darkBlue,
                     currentIndex: cubit.currentIndex,
@@ -50,12 +47,17 @@ class _HenaGymLayoutState extends State<HenaGymLayout> {
                     },
                     items: const [
                       BottomNavigationBarItem(
-                          icon: Icon(CustomIcon.dumbbell), label: "Gym Home"),
+                          backgroundColor: MyColors.darkBlue,
+                          icon: Icon(CustomIcon.dumbbell),
+                          label: "Gym Home"),
                       BottomNavigationBarItem(
                           icon: Icon(Icons.store), label: "Market"),
                       BottomNavigationBarItem(
                           icon: Icon(CustomIcon.salad),
                           label: "Nutrition Plan"),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.manage_accounts_rounded),
+                          label: "Profile"),
                     ],
                   ),
                 ),
