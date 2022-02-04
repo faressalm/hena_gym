@@ -60,12 +60,11 @@ class GymDetailedScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: kDefaultPadding * 3),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: IconButton(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                IconButton(
                                   iconSize: 30,
                                   color: MyColors.lightGray,
                                   padding: const EdgeInsets.symmetric(
@@ -75,47 +74,47 @@ class GymDetailedScreen extends StatelessWidget {
                                     Navigator.pop(context);
                                   },
                                 ),
-                              ),
-                              IconButtonCard(
-                                size: size,
-                                child: IconButton(
-                                    onPressed: () async {
-                                      await urlRepository
-                                          .accessPhone(gym.contactNumber);
-                                    },
-                                    icon: const Icon(
-                                      Icons.call,
-                                      color: MyColors.red,
-                                      size: 30,
-                                    )),
-                              ),
-                              IconButtonCard(
-                                size: size,
-                                child: IconButton(
-                                    onPressed: () async {
-                                      await urlRepository
-                                          .accessLink(gym.contactEmail);
-                                    },
-                                    icon: const Icon(
-                                      Icons.facebook_rounded,
-                                      color: MyColors.darkBlue,
-                                      size: 35,
-                                    )),
-                              ),
-                              IconButtonCard(
-                                size: size,
-                                child: IconButton(
-                                    onPressed: () async {
-                                      await urlRepository
-                                          .accessLocation(gym.location);
-                                    },
-                                    icon: const Icon(
-                                      Icons.location_on,
-                                      color: MyColors.cyan,
-                                      size: 30,
-                                    )),
-                              ),
-                            ],
+                                IconButtonCard(
+                                  size: size,
+                                  child: IconButton(
+                                      onPressed: () async {
+                                        await urlRepository
+                                            .accessPhone(gym.contactNumber);
+                                      },
+                                      icon: const Icon(
+                                        Icons.call,
+                                        color: MyColors.red,
+                                        size: 30,
+                                      )),
+                                ),
+                                IconButtonCard(
+                                  size: size,
+                                  child: IconButton(
+                                      onPressed: () async {
+                                        await urlRepository
+                                            .accessLink(gym.contactEmail);
+                                      },
+                                      icon: const Icon(
+                                        Icons.facebook_rounded,
+                                        color: MyColors.darkBlue,
+                                        size: 35,
+                                      )),
+                                ),
+                                IconButtonCard(
+                                  size: size,
+                                  child: IconButton(
+                                      onPressed: () async {
+                                        await urlRepository
+                                            .accessLocation(gym.location);
+                                      },
+                                      icon: const Icon(
+                                        Icons.location_on,
+                                        color: MyColors.cyan,
+                                        size: 30,
+                                      )),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

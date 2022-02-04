@@ -133,9 +133,9 @@ class _ShowGymState extends State<ShowGym> {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 2 / 3,
+        childAspectRatio: 2.5 / 3,
         crossAxisSpacing: 1,
-        mainAxisSpacing: 1,
+        mainAxisSpacing: 3,
       ),
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
