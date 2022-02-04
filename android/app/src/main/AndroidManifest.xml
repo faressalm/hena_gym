@@ -23,7 +23,7 @@
         </intent>
     </queries>
    <application
-        android:label="hena_gym"
+        android:label="Hena Gym"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic = "true">
         <activity
