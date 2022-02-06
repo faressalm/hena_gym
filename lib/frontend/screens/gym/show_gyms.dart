@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hena_gym/constants/strings.dart';
 import 'package:hena_gym/data/services/auth_services.dart';
+import 'package:hena_gym/frontend/widgets/no_internet_widget.dart';
 import 'package:hena_gym/frontend/widgets/search_field.dart';
 import '../../../business-logic/gym/show_gym_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -165,33 +167,34 @@ class _ShowGymState extends State<ShowGym> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          toolbarHeight: 40,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
-            ),
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 40,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20)),
           ),
-          elevation: 0.0,
-          leading: _isSearching
-              ? const BackButton(
-                  color: MyColors.darkBlue,
-                )
-              : const SizedBox.shrink(),
-          centerTitle: true,
-          title: _isSearching
-              ? SearchFiled(
-                  searchTextController: _searchTextController,
-                  searchFunction: addSearchedForItemsToSearchedList,
-                  hintText: 'Find a Gym...',
-                )
-              : _buildAppBarTitle(),
-          actions: _buildAppBarActions(),
         ),
-        body: buildBlocWidget());
+        elevation: 0.0,
+        leading: _isSearching
+            ? const BackButton(
+                color: MyColors.darkBlue,
+              )
+            : const SizedBox.shrink(),
+        centerTitle: true,
+        title: _isSearching
+            ? SearchFiled(
+                searchTextController: _searchTextController,
+                searchFunction: addSearchedForItemsToSearchedList,
+                hintText: 'Find a Gym...',
+              )
+            : _buildAppBarTitle(),
+        actions: _buildAppBarActions(),
+      ),
+      body: buildBlocWidget(),
+    );
   }
 }
