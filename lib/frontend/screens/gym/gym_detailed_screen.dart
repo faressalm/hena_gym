@@ -35,9 +35,9 @@ class GymDetailedScreen extends StatelessWidget {
     }
 
     isSuccess
-        ? showToast(text: "Opens the $title", state: ToastStates.SUCCESS)
+        ? showToast(text: "Opens The $title", state: ToastStates.SUCCESS)
         : showToast(
-            text: "Couldn't access this $title", state: ToastStates.ERROR);
+            text: "Couldn't Access This $title", state: ToastStates.ERROR);
   }
 
   @override
@@ -78,8 +78,7 @@ class GymDetailedScreen extends StatelessWidget {
                                   size: size,
                                   child: IconButton(
                                       onPressed: () async {
-                                        await urlRepository
-                                            .accessPhone(gym.contactNumber);
+                                        await builURLActions(phoneNumberURL);
                                       },
                                       icon: const Icon(
                                         Icons.call,
@@ -91,8 +90,7 @@ class GymDetailedScreen extends StatelessWidget {
                                   size: size,
                                   child: IconButton(
                                       onPressed: () async {
-                                        await urlRepository
-                                            .accessLink(gym.contactEmail);
+                                        await builURLActions(linkURL);
                                       },
                                       icon: const Icon(
                                         Icons.facebook_rounded,
@@ -104,8 +102,7 @@ class GymDetailedScreen extends StatelessWidget {
                                   size: size,
                                   child: IconButton(
                                       onPressed: () async {
-                                        await urlRepository
-                                            .accessLocation(gym.location);
+                                        await builURLActions(locationURL);
                                       },
                                       icon: const Icon(
                                         Icons.location_on,
