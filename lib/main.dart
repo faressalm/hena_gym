@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hena_gym/frontend/screens/market/product_screen.dart';
 import 'package:provider/provider.dart';
 import 'data/models/my_user.dart';
 import 'data/repository/auth_repo.dart';
@@ -26,7 +27,8 @@ class HenaGym extends StatelessWidget {
       initialData: null,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: appRouter.generateRoute,
+      //  onGenerateRoute: appRouter.generateRoute,
+        home: ProductScreen(),
         theme: ThemeData(primarySwatch: buildMaterialColor(MyColors.darkRed)),
       ),
     );

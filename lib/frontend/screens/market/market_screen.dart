@@ -55,7 +55,7 @@ class MarketScreen extends StatelessWidget {
               Stack(
                 alignment: AlignmentDirectional.bottomStart,
                 children: [
-                  SizedBox(
+                  Container(
                       width: double.infinity,
                       child: FadeInImage.assetNetwork(
                           height: 150,
