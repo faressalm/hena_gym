@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hena_gym/constants/my_gui.dart';
 import 'package:hena_gym/data/models/product.dart';
+import 'package:hena_gym/utils/components.dart';
 
 class ProductScreen extends StatelessWidget{
   /*Product product;
@@ -136,40 +137,24 @@ class ProductScreen extends StatelessWidget{
                                 onPrimary: MyColors.white
                               ),// foreground
                               onPressed: () {
-                                showModalBottomSheet(context: context,
-                                    builder:(BuildContext context){
-                                      return Container(
-                                        height: 300,
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(15.0),
-                                              child: Text(
-                                                "Method of payment",
-                                                style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: MyColors.darkBlue
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 10.0,
-                                            ),
-                                            ElevatedButton(onPressed: (){},
-                                                child:Container(
-                                                  width: 150,
-                                                    child: Center(child: Text('Visa'))),
-                                                style: ElevatedButton.styleFrom(
-                                                  primary: Colors.green,
-                                                  onPrimary: Colors.white,
-                                                ),
-                                            )
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                );
+                                showDialog(context: context, builder: (BuildContext context){
+                                  return AlertDialog(
+                                    title:  Text("Add your address"),
+                                    content: TextFormField(
+                                      decoration: textInputDecoration.copyWith(
+                                          labelText: 'address',
+                                          suffixIcon: const Icon(Icons.home)),
+                                    ),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        child: Text("approve"),
+                                        onPressed: (){
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
                               },
                               child: Text('Order Now'),
                             )
