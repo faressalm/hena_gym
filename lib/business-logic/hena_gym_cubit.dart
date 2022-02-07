@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hena_gym/frontend/screens/market/market_screen.dart';
+import 'package:hena_gym/frontend/screens/nutrition/nutrition_setting.dart';
 import 'gym/show_gym_cubit.dart';
 import '../data/repository/gym_repo.dart';
 import '../data/services/gym_services.dart';
@@ -14,7 +15,6 @@ class HenaGymCubit extends Cubit<HenaGymState> {
   static HenaGymCubit get(context) => BlocProvider.of(context);
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   List<Widget> screens = [];
-  List<String> titles = [];
   int currentIndex = 0;
 
   HenaGymCubit() : super(HenaGymInitial()) {
@@ -26,10 +26,9 @@ class HenaGymCubit extends Cubit<HenaGymState> {
         child: const ShowGym(),
       ),
       MarketScreen(),
-      Container(),
+      NutritionSetting(),
       Container()
     ];
-    titles = ['Find Your Gym', 'Market', 'Set Your Goal', ""];
   }
 
   void changeBottomNav(int index) {

@@ -3,6 +3,9 @@ import 'package:hena_gym/data/models/gym.dart';
 import 'package:hena_gym/data/repository/url_repo.dart';
 import 'package:hena_gym/data/services/url_services.dart';
 import 'package:hena_gym/frontend/screens/gym/gym_detailed_screen.dart';
+import 'package:hena_gym/frontend/screens/nutrition/calculate_calories.dart';
+import 'package:hena_gym/frontend/screens/nutrition/goal_screen.dart';
+import 'package:hena_gym/frontend/screens/nutrition/measurements_screen.dart';
 import 'screens/authenticate/forget_password.dart';
 import 'screens/authenticate/sign_in.dart';
 import 'screens/hena_gym_layout.dart';
@@ -33,6 +36,13 @@ class AppRouter {
                   gym: gym,
                   urlRepository: urlRepository,
                 ));
+      case calculateCaloriesScreen:
+        return MaterialPageRoute(
+            builder: (_) => const CalculateCaloriesScreen());
+      case measurementsScreen:
+        return MaterialPageRoute(builder: (_) => const MeasurementsScreen());
+      case goalScreen:
+        return MaterialPageRoute(builder: (_) => const GoalScreen());
     }
   }
 }

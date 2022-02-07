@@ -73,7 +73,7 @@ class _HenaGymLayoutState extends State<HenaGymLayout> {
                       BottomNavigationBarItem(
                           backgroundColor: MyColors.darkBlue,
                           icon: Icon(CustomIcon.salad),
-                          label: "Nutrition Plan"),
+                          label: "Health Home"),
                       BottomNavigationBarItem(
                           backgroundColor: MyColors.darkBlue,
                           icon: Icon(Icons.manage_accounts_rounded),

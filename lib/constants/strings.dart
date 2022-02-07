@@ -7,3 +7,6 @@ const gymDetailedScreen = "/gym_detailed";
 const linkURL = 'link';
 const phoneNumberURL = 'phone number';
 const locationURL = 'location';
+const calculateCaloriesScreen = "calculate_calories";
+const measurementsScreen = "measurements";
+const goalScreen = "goal_screen";
