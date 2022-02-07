@@ -7,7 +7,7 @@ class MarketServices {
     postsCollection = _firebaseFirestore.collection("products");
   }
   Future<List<dynamic>> getAllProducts() async {
-    QuerySnapshot gymsQuery = await postsCollection.get();
-    return gymsQuery.docs.map((e) => e.data()).toList();
+    QuerySnapshot marketQuery = await postsCollection.get();
+    return marketQuery.docs.map((e) => e.data()).toList();
   }
 }
