@@ -1,13 +1,18 @@
+import 'package:hena_gym/data/models/order.dart';
+
 import '../models/product.dart';
 import '../services/market_services.dart';
 
 class MarketServicesRepository {
-  final MarketServices marketSevices;
+  final MarketServices marketServices;
 
-  MarketServicesRepository({required this.marketSevices});
+  MarketServicesRepository({required this.marketServices});
   Future<List<Product>?> getAllProducts() async {
-    List<dynamic> gymsQuery = await marketSevices.getAllProducts();
-    return gymsQuery.map(_mapToProduct).toList();
+    List<dynamic> marketQuery = await marketServices.getAllProducts();
+    return marketQuery.map(_mapToProduct).toList();
+  }
+  Future<bool> addOrder(String address,String userPhone,String userName,int quantity)async {
+    return marketServices.addOrder(Order(address: address, userName: userName, userPhone: userPhone, quantity: quantity));
   }
 
   Product _mapToProduct(data) {
