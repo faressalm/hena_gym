@@ -9,10 +9,12 @@ import 'package:hena_gym/constants/my_gui.dart';
 import 'package:hena_gym/data/models/product.dart';
 import 'package:hena_gym/data/repository/marekt_repo.dart';
 import 'package:hena_gym/data/services/market_services.dart';
+import 'package:hena_gym/frontend/screens/market/product_screen.dart';
+import 'package:hena_gym/utils/components.dart';
 
 class MarketScreen extends StatelessWidget {
   MarketServicesRepository marketRepository = MarketServicesRepository(
-      marketSevices: MarketServices(FirebaseFirestore.instance));
+      marketServices: MarketServices(FirebaseFirestore.instance));
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -32,7 +34,7 @@ class MarketScreen extends StatelessWidget {
                     childAspectRatio: 1 / 1.5,
                     shrinkWrap: true,
                     children: List.generate(cubit.products.length,
-                        (index) => buildGridProduct(cubit.products[index])),
+                        (index) => buildGridProduct(cubit.products[index],context)),
                   ),
               fallback: (context) =>
                   const Center(child: CircularProgressIndicator()));
@@ -41,61 +43,66 @@ class MarketScreen extends StatelessWidget {
     );
   }
 
-  Widget buildGridProduct(Product product) => Padding(
-        padding: const EdgeInsets.all(6.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: MyColors.darkRed, width: 0.7),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Stack(
-                alignment: AlignmentDirectional.bottomStart,
-                children: [
-                  SizedBox(
-                      width: double.infinity,
-                      child: FadeInImage.assetNetwork(
-                          height: 150,
-                          image: product.imageURL,
-                          placeholder: 'assets/images/loading.gif')),
-                  Visibility(
-                    visible: product.offer != 'none',
-                    child: Container(
-                      color: Colors.red,
-                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                      child: const Text(
-                        'DISCOUNT',
-                        style: TextStyle(fontSize: 10.0, color: MyColors.white),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
+  Widget buildGridProduct(Product product,context) => InkWell(
+    onTap: (){
+      navigateTo(context, ProductScreen(product: product,));
+    },
+    child: Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: MyColors.darkRed, width: 0.7),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  alignment: AlignmentDirectional.bottomStart,
                   children: [
-                    Text(
-                      product.name,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          color: MyColors.darkRed, fontSize: 14.0, height: 1.3),
-                    ),
-                    Text(
-                      product.price,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          const TextStyle(fontSize: 12.0, color: MyColors.cyan),
+                    Container(
+                        width: double.infinity,
+                        child: FadeInImage.assetNetwork(
+                            height: 150,
+                            image: product.imageURL,
+                            placeholder: 'assets/images/loading.gif')),
+                    Visibility(
+                      visible: product.offer != 'none',
+                      child: Container(
+                        color: Colors.red,
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: const Text(
+                          'DISCOUNT',
+                          style: TextStyle(fontSize: 10.0, color: MyColors.white),
+                        ),
+                      ),
                     )
                   ],
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        product.name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            color: MyColors.darkRed, fontSize: 14.0, height: 1.3),
+                      ),
+                      Text(
+                        product.price,
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            const TextStyle(fontSize: 12.0, color: MyColors.cyan),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-      );
+  );
 }
