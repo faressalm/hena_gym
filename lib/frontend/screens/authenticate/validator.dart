@@ -103,4 +103,41 @@ class Validator {
     }
     return double.tryParse(str) != null;
   }
+
+  /*Calculate calories */
+  static String? weightValidator(String? weight) {
+    if (weight!.isEmpty) {
+      return "Set your weight";
+    } else if (weight.length > 3 && _isNumeric(weight) ||
+        weight.length > 6 ||
+        double.parse(weight) > 250 ||
+        double.parse(weight) < 30) {
+      return "Enter valid weight";
+    } else {
+      return null;
+    }
+  }
+
+  static String? heightValidator(String? height) {
+    if (height!.isEmpty) {
+      return "Set your height";
+    } else if (height.length > 3 && _isNumeric(height) ||
+        height.length > 6 ||
+        double.parse(height) > 250 ||
+        double.parse(height) < 30) {
+      return "Enter valid height";
+    } else {
+      return null;
+    }
+  }
+
+  static String? agetValidator(String? age) {
+    if (age!.isEmpty) {
+      return "Set your age";
+    } else if (age.length > 2 || !_isNumeric(age)) {
+      return "Enter valid age";
+    } else {
+      return null;
+    }
+  }
 }

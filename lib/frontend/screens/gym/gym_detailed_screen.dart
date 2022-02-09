@@ -154,29 +154,26 @@ class GymDetailedScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 child: Row(
-                  children: <Widget>[
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: gym.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline4!
-                                .copyWith(
-                                    color: MyColors.darkBlue,
-                                    fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        gym.name,
+                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                            color: MyColors.darkBlue,
+                            fontWeight: FontWeight.bold),
+                        maxLines: 5,
                       ),
                     ),
-                    const Spacer(),
                     Text(
                       "★${gym.rate}",
                       style: Theme.of(context)
                           .textTheme
                           .headline5!
                           .copyWith(color: MyColors.darkRed),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
                     )
                   ],
                 ),
