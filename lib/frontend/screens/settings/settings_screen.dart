@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../business-logic/auth/register_cubit.dart';
+import 'package:hena_gym/constants/strings.dart';
+import 'package:hena_gym/utils/components.dart';
+
 import '../../../business-logic/settings/settings_cubit.dart';
 import '../../../business-logic/settings/settings_states.dart';
 import '../../../constants/my_gui.dart';
@@ -20,6 +22,9 @@ class SettingsScreen extends StatelessWidget {
           if (state is GetUserDataSuccessfully) {
             phone.text = cubit.phone;
             username.text = cubit.username;
+          } else if (state is SignOutSuccessfully) {
+            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, loginScreen);
           }
         },
         builder: (context, state) {
@@ -47,7 +52,7 @@ class SettingsScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Text(
                                 "Settings",
                                 style: TextStyle(
@@ -97,7 +102,7 @@ class SettingsScreen extends StatelessWidget {
                                     suffixIcon: const Icon(Icons.person)),
                                 validator: Validator.validateUsername,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
                               TextFormField(
@@ -107,7 +112,7 @@ class SettingsScreen extends StatelessWidget {
                                     suffixIcon: const Icon(Icons.phone)),
                                 validator: Validator.validatePhone,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               ElevatedButton(
@@ -117,12 +122,23 @@ class SettingsScreen extends StatelessWidget {
                                           context, phone.text, username.text);
                                     }
                                   },
-                                  child: Text("update data")),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    cubit.signOut();
-                                  },
-                                  child: Text("logout")),
+                                  child: const Text("update data")),
+                              TextButton.icon(
+                                icon: const Icon(
+                                  Icons.logout_rounded,
+                                  color: MyColors.darkRed,
+                                ),
+                                label: const Text(
+                                  'logout',
+                                  style: TextStyle(
+                                    color: MyColors.darkRed,
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  await loadingDailog(context);
+                                  cubit.signOut();
+                                },
+                              ),
                             ],
                           ),
                         ),

@@ -1,17 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_offline/flutter_offline.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../constants/strings.dart';
-import '../../../data/services/auth_services.dart';
-import '../../widgets/no_internet_widget.dart';
-import '../../widgets/search_field.dart';
-import '../../../business-logic/gym/show_gym_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../business-logic/gym/show_gym_cubit.dart';
 import '../../../constants/my_gui.dart';
 import '../../../data/models/gym.dart';
 import '../../widgets/gym_item.dart';
 import '../../widgets/loading_indicator.dart';
+import '../../widgets/search_field.dart';
 
 class ShowGym extends StatefulWidget {
   const ShowGym({Key? key}) : super(key: key);
@@ -47,23 +44,6 @@ class _ShowGymState extends State<ShowGym> {
       ];
     } else {
       return [
-        TextButton.icon(
-          icon: const Icon(
-            Icons.logout_rounded,
-            color: MyColors.darkRed,
-          ),
-          label: const Text(
-            '',
-            style: TextStyle(
-              color: MyColors.darkRed,
-            ),
-          ),
-          onPressed: () async {
-            AuthServices auth = AuthServices();
-            await auth.signOut();
-            Navigator.pushReplacementNamed(context, loginScreen);
-          },
-        ),
         IconButton(
           onPressed: _startSearch,
           icon: const Icon(

@@ -2,16 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-import '../../constants/strings.dart';
-import '../../data/models/my_user.dart';
-import '../../data/services/auth_services.dart';
-import '../widgets/loading_indicator.dart';
-import '../widgets/no_internet_widget.dart';
 import 'package:provider/provider.dart';
+
 import '../../business-logic/hena_gym_cubit.dart';
 import '../../constants/icon.dart';
 import '../../constants/my_gui.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../data/models/my_user.dart';
+import '../widgets/loading_indicator.dart';
+import '../widgets/no_internet_widget.dart';
 
 class HenaGymLayout extends StatefulWidget {
   const HenaGymLayout({Key? key}) : super(key: key);
@@ -28,7 +26,11 @@ class _HenaGymLayoutState extends State<HenaGymLayout> {
 
   @override
   Widget build(BuildContext context) {
-    String uid = Provider.of<MyUser?>(context)!.uid;
+    MyUser? myuser = Provider.of<MyUser?>(context);
+    if (myuser == null) {
+      return Container();
+    }
+    String uid = myuser.uid;
     return BlocProvider(
       create: (BuildContext context) => HenaGymCubit(uid: uid),
       child: BlocConsumer<HenaGymCubit, HenaGymState>(

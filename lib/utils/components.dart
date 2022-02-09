@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hena_gym/frontend/widgets/loading_indicator.dart';
 
 void showToast({
   required String text,
@@ -59,3 +60,11 @@ Widget myDivider() => Padding(
         color: Colors.grey[300],
       ),
     );
+
+loadingDailog(context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const LoadingIndicator();
+      });
+}

@@ -2,17 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+
 import '../../../business-logic/auth/register_cubit.dart';
-import '../../../constants/enums.dart';
+import '../../../constants/my_gui.dart';
 import '../../../constants/strings.dart';
 import '../../../data/repository/auth_repo.dart';
 import '../../../data/services/auth_services.dart';
-import 'sign_in.dart';
-import 'validator.dart';
 import '../../../utils/components.dart';
-import '../../../constants/my_gui.dart';
-import 'package:intl/intl.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'validator.dart';
 
 // ignore: must_be_immutable
 class RegisterScreen extends StatelessWidget {
@@ -103,13 +102,13 @@ class RegisterScreen extends StatelessWidget {
                                     controller: nameController,
                                     decoration: textInputDecoration.copyWith(
                                         labelText: 'Username',
-                                        suffixIcon: const Icon(Icons.person)
-                                    ),
+                                        suffixIcon: const Icon(Icons.person)),
                                     validator: Validator.validateUsername),
                                 const SizedBox(
                                   height: 20,
                                 ),
                                 TextFormField(
+                                    keyboardType: TextInputType.emailAddress,
                                     controller: emailController,
                                     decoration: textInputDecoration.copyWith(
                                         labelText: 'Email',

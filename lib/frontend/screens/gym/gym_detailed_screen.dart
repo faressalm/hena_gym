@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../../../constants/my_gui.dart';
 import '../../../constants/strings.dart';
 import '../../../data/models/gym.dart';
 import '../../../data/repository/url_repo.dart';
-import '../authenticate/validator.dart';
-import '../../widgets/custom_information_text.dart';
 import '../../../utils/components.dart';
+import '../../widgets/custom_information_text.dart';
 import '../../widgets/icon_button_card.dart';
+import '../authenticate/validator.dart';
 
 class GymDetailedScreen extends StatelessWidget {
   final Gym gym;

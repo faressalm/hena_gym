@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../business-logic/auth/login_cubit.dart';
 import '../../../constants/my_gui.dart';
 import '../../../constants/strings.dart';
 import '../../../data/repository/auth_repo.dart';
 import '../../../data/services/auth_services.dart';
-import 'validator.dart';
 import '../../../utils/components.dart';
+import 'validator.dart';
 
 // ignore: must_be_immutable
 class SignIn extends StatelessWidget {
@@ -88,6 +89,7 @@ class SignIn extends StatelessWidget {
                                 height: 20,
                               ),
                               TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
                                   controller: emailController,
                                   decoration: textInputDecoration.copyWith(
                                       labelText: 'Email',

@@ -3,14 +3,15 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../business-logic/market/market_cubit.dart';
 import '../../../business-logic/market/market_states.dart';
 import '../../../constants/my_gui.dart';
 import '../../../data/models/product.dart';
 import '../../../data/repository/marekt_repo.dart';
 import '../../../data/services/market_services.dart';
-import 'product_screen.dart';
 import '../../../utils/components.dart';
+import 'product_screen.dart';
 
 class MarketScreen extends StatelessWidget {
   MarketServicesRepository marketRepository = MarketServicesRepository(
@@ -67,7 +68,7 @@ class MarketScreen extends StatelessWidget {
                 Stack(
                   alignment: AlignmentDirectional.bottomStart,
                   children: [
-                    Container(
+                    SizedBox(
                         width: double.infinity,
                         child: FadeInImage.assetNetwork(
                             height: 150,

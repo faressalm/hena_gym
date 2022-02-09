@@ -1,12 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../product/product_states.dart';
-import 'settings_states.dart';
+
 import '../../data/services/auth_services.dart';
 import '../../data/services/settings_service.dart';
 import '../../utils/components.dart';
 import '../../utils/constants.dart';
+import 'settings_states.dart';
 
 class SettingsCubit extends Cubit<SettingStates> {
   SettingsCubit() : super(SettingInitialState());

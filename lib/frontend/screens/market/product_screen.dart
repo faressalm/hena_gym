@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../business-logic/product/product_cubit.dart';
 import '../../../business-logic/product/product_states.dart';
 import '../../../constants/my_gui.dart';
-import '../../../data/models/my_user.dart';
 import '../../../data/models/product.dart';
-import '../../../utils/components.dart';
 import '../../../utils/constants.dart';
-import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class ProductScreen extends StatelessWidget {
@@ -23,7 +21,6 @@ class ProductScreen extends StatelessWidget {
       child: BlocConsumer<ProductCubit, ProductState>(
         listener: (context, state) {},
         builder: (context, state) {
-          var user = Provider.of<MyUser?>(context);
           var cubit = ProductCubit.get(context);
           return Scaffold(
             backgroundColor: Colors.white,
@@ -216,7 +213,7 @@ class ProductScreen extends StatelessWidget {
                                                     .withOpacity(0.6),
                                                 spreadRadius: 2,
                                                 blurRadius: 5,
-                                                offset: Offset(4, 2))
+                                                offset: const Offset(4, 2))
                                           ]),
                                       child: Material(
                                         color: Colors.transparent,
@@ -225,7 +222,7 @@ class ProductScreen extends StatelessWidget {
                                           onTap: () {
                                             cubit.decQuantity();
                                           },
-                                          child: Center(
+                                          child: const Center(
                                             child: Icon(Icons.minimize),
                                           ),
                                         ),
@@ -256,7 +253,7 @@ class ProductScreen extends StatelessWidget {
                               if (value == null) {
                                 return 'please fill box';
                               }
-                              if (value.length == 0) {
+                              if (value.isEmpty) {
                                 return 'please fill address';
                               }
                               return null;

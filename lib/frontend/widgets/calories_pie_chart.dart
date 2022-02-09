@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../../constants/my_gui.dart';
 
 // ignore: must_be_immutable
@@ -9,7 +10,7 @@ class CaloriesPieChart extends StatelessWidget {
   late List<charts.Series<Task, String>> _seriesPieData;
 
   var piedata = [
-    Task('Carp', 50, Colors.amber.shade100),
+    Task('Carb', 50, Colors.amber.shade100),
     Task('Fats', 30, MyColors.red),
     Task('Protein', 20, MyColors.kPrimaryColor)
   ];
