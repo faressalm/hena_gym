@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hena_gym/business-logic/product/product_states.dart';
 import 'package:hena_gym/business-logic/settings/settings_states.dart';
+import 'package:hena_gym/data/services/auth_services.dart';
 import 'package:hena_gym/data/services/settings_service.dart';
 import 'package:hena_gym/utils/components.dart';
 import 'package:hena_gym/utils/constants.dart';
@@ -34,5 +36,10 @@ class SettingsCubit extends Cubit<SettingStates>{
         emit(UpdateUserDataFailed());
       }
     });
+  }
+  void signOut(){
+    AuthServices authServices = AuthServices();
+    authServices.signOut();
+    emit(SignOutSuccessfully());
   }
 }

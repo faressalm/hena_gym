@@ -4,3 +4,4 @@ class GetUserDataSuccessfully extends SettingStates{}
 class GetUserDataFailed extends SettingStates{}
 class UpdateUserDataSuccessfully extends SettingStates{}
 class UpdateUserDataFailed extends SettingStates{}
+class SignOutSuccessfully extends SettingStates{}

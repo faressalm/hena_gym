@@ -92,6 +92,7 @@ class SettingsScreen extends StatelessWidget{
                                 ]
                             ),
                             child:Form(
+                              key: formKey,
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Column(
@@ -108,21 +109,26 @@ class SettingsScreen extends StatelessWidget{
 
                                     TextFormField(
                                       controller: phone,
+
                                       decoration: textInputDecoration.copyWith(
                                           labelText: 'phone',
                                           suffixIcon: const Icon(Icons.phone)
                                       ),
-                                      validator: Validator.validateUsername,
+                                      validator: Validator.validatePhone,
                                     ),
                                     SizedBox(
                                       height: 20,
                                     ),
                                     ElevatedButton(onPressed:(){
-                                      cubit.updateUserData(context, phone.text, username.text);
+                                      if(formKey.currentState!.validate()){
+                                        cubit.updateUserData(context, phone.text, username.text);
+                                      }
                                       } , child: Text(
                                         "update data"
                                     )),
-                                    ElevatedButton(onPressed:(){} , child: Text(
+                                    ElevatedButton(onPressed:(){
+                                      cubit.signOut();
+                                    } , child: Text(
                                         "logout"
                                     )),
                                   ],
