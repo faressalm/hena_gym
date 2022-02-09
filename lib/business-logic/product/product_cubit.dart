@@ -24,8 +24,8 @@ class ProductCubit extends Cubit<ProductState> {
     quantity--;
     emit(ChangeQuantityState());
   }
-  void addOrder(String address,String userPhone, String userName){
-    marketServicesRepository.addOrder(address, userPhone, userName, quantity).then((value) =>{
+  void addOrder(String address,String userPhone, String userName,String uid){
+    marketServicesRepository.addOrder(address, userPhone, userName, quantity,uid).then((value) =>{
       if(value){
         showToast(text: "Order submitted", state: ToastStates.SUCCESS)
       }else{

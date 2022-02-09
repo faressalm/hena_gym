@@ -7,12 +7,14 @@ import 'package:hena_gym/constants/my_gui.dart';
 import 'package:hena_gym/data/models/my_user.dart';
 import 'package:hena_gym/data/models/product.dart';
 import 'package:hena_gym/utils/components.dart';
+import 'package:hena_gym/utils/constants.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class ProductScreen extends StatelessWidget {
   Product product;
   TextEditingController controller = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   ProductScreen({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -247,18 +249,33 @@ class ProductScreen extends StatelessWidget {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: const Text("Add your address"),
-                        content: TextFormField(
-                          controller: controller,
-                          decoration: textInputDecoration.copyWith(
-                              labelText: 'address',
-                              suffixIcon: const Icon(Icons.home)),
+                        content: Form(
+                          key: formKey,
+                          child: TextFormField(
+                            validator: (String?value){
+                              if(value==null){
+                                return 'please fill box';
+                              }
+                              if(value.length==0){
+                                return'please fill address';
+                              }
+                              return null;
+                            },
+                            controller: controller,
+                            decoration: textInputDecoration.copyWith(
+                                labelText: 'address',
+                                suffixIcon: const Icon(Icons.home)),
+                          ),
                         ),
                         actions: <Widget>[
                           TextButton(
                             child: const Text("approve"),
                             onPressed: () {
-                              Navigator.of(context).pop();
-                              // cubit.addOrder(controller.text, user.uid)
+                                if (formKey.currentState!.validate()) {
+                                  cubit.addOrder(controller.text.toString(),userData!.phoneNumber,userData!.userName,userData!.uid);
+                                  Navigator.of(context).pop();
+                                }
+
                             },
                           )
                         ],

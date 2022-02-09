@@ -11,8 +11,8 @@ class MarketServicesRepository {
     List<dynamic> marketQuery = await marketServices.getAllProducts();
     return marketQuery.map(_mapToProduct).toList();
   }
-  Future<bool> addOrder(String address,String userPhone,String userName,int quantity)async {
-    return marketServices.addOrder(Order(address: address, userName: userName, userPhone: userPhone, quantity: quantity));
+  Future<bool> addOrder(String address,String userPhone,String userName,int quantity,String uid)async {
+    return marketServices.addOrder(Order(address: address, userName: userName, userPhone: userPhone, quantity: quantity,userId: uid));
   }
 
   Product _mapToProduct(data) {
