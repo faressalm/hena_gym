@@ -3,14 +3,14 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hena_gym/business-logic/market/market_cubit.dart';
-import 'package:hena_gym/business-logic/market/market_states.dart';
-import 'package:hena_gym/constants/my_gui.dart';
-import 'package:hena_gym/data/models/product.dart';
-import 'package:hena_gym/data/repository/marekt_repo.dart';
-import 'package:hena_gym/data/services/market_services.dart';
-import 'package:hena_gym/frontend/screens/market/product_screen.dart';
-import 'package:hena_gym/utils/components.dart';
+import '../../../business-logic/market/market_cubit.dart';
+import '../../../business-logic/market/market_states.dart';
+import '../../../constants/my_gui.dart';
+import '../../../data/models/product.dart';
+import '../../../data/repository/marekt_repo.dart';
+import '../../../data/services/market_services.dart';
+import 'product_screen.dart';
+import '../../../utils/components.dart';
 
 class MarketScreen extends StatelessWidget {
   MarketServicesRepository marketRepository = MarketServicesRepository(
@@ -33,8 +33,10 @@ class MarketScreen extends StatelessWidget {
                     crossAxisSpacing: 1.0,
                     childAspectRatio: 1 / 1.5,
                     shrinkWrap: true,
-                    children: List.generate(cubit.products.length,
-                        (index) => buildGridProduct(cubit.products[index],context)),
+                    children: List.generate(
+                        cubit.products.length,
+                        (index) =>
+                            buildGridProduct(cubit.products[index], context)),
                   ),
               fallback: (context) =>
                   const Center(child: CircularProgressIndicator()));
@@ -43,11 +45,15 @@ class MarketScreen extends StatelessWidget {
     );
   }
 
-  Widget buildGridProduct(Product product,context) => InkWell(
-    onTap: (){
-      navigateTo(context, ProductScreen(product: product,));
-    },
-    child: Padding(
+  Widget buildGridProduct(Product product, context) => InkWell(
+        onTap: () {
+          navigateTo(
+              context,
+              ProductScreen(
+                product: product,
+              ));
+        },
+        child: Padding(
           padding: const EdgeInsets.all(6.0),
           child: Container(
             decoration: BoxDecoration(
@@ -74,7 +80,8 @@ class MarketScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: const Text(
                           'DISCOUNT',
-                          style: TextStyle(fontSize: 10.0, color: MyColors.white),
+                          style:
+                              TextStyle(fontSize: 10.0, color: MyColors.white),
                         ),
                       ),
                     )
@@ -89,13 +96,15 @@ class MarketScreen extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                            color: MyColors.darkRed, fontSize: 14.0, height: 1.3),
+                            color: MyColors.darkRed,
+                            fontSize: 14.0,
+                            height: 1.3),
                       ),
                       Text(
                         product.price,
                         overflow: TextOverflow.ellipsis,
-                        style:
-                            const TextStyle(fontSize: 12.0, color: MyColors.cyan),
+                        style: const TextStyle(
+                            fontSize: 12.0, color: MyColors.cyan),
                       )
                     ],
                   ),
@@ -104,5 +113,5 @@ class MarketScreen extends StatelessWidget {
             ),
           ),
         ),
-  );
+      );
 }

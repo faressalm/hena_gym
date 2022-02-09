@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hena_gym/constants/my_gui.dart';
-import 'package:hena_gym/constants/strings.dart';
-import 'package:hena_gym/data/models/gym.dart';
-import 'package:hena_gym/data/repository/url_repo.dart';
-import 'package:hena_gym/frontend/screens/authenticate/validator.dart';
-import 'package:hena_gym/frontend/widgets/custom_information_text.dart';
-import 'package:hena_gym/utils/components.dart';
-import 'package:hena_gym/frontend/widgets/icon_button_card.dart';
+import '../../../constants/my_gui.dart';
+import '../../../constants/strings.dart';
+import '../../../data/models/gym.dart';
+import '../../../data/repository/url_repo.dart';
+import '../authenticate/validator.dart';
+import '../../widgets/custom_information_text.dart';
+import '../../../utils/components.dart';
+import '../../widgets/icon_button_card.dart';
 
 class GymDetailedScreen extends StatelessWidget {
   final Gym gym;

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hena_gym/utils/logger.dart';
+import '../../utils/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class URLServices {

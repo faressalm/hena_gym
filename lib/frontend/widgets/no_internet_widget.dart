@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hena_gym/constants/my_gui.dart';
+import '../../constants/my_gui.dart';
 
 class NoInternetWidget extends StatelessWidget {
   const NoInternetWidget({Key? key}) : super(key: key);

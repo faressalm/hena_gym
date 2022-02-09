@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hena_gym/business-logic/user_calories/calories_calculation.dart';
-import 'package:hena_gym/constants/my_gui.dart';
-import 'package:hena_gym/data/models/user_calories.dart';
-import 'package:hena_gym/frontend/widgets/advice.dart';
-import 'package:hena_gym/frontend/widgets/calories_pie_chart.dart';
-import 'package:hena_gym/frontend/widgets/head_and_base_line.dart';
-import 'package:hena_gym/utils/shared_functionalities.dart';
+import '../../../business-logic/user_calories/calories_calculation.dart';
+import '../../../constants/my_gui.dart';
+import '../../../data/models/user_calories.dart';
+import '../../widgets/advice.dart';
+import '../../widgets/calories_pie_chart.dart';
+import '../../widgets/head_and_base_line.dart';
+import '../../../utils/shared_functionalities.dart';
 
 // ignore: must_be_immutable
 class GoalScreen extends StatelessWidget {

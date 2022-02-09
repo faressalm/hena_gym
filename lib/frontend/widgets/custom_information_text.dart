@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hena_gym/constants/my_gui.dart';
+import '../../constants/my_gui.dart';
 
 class CustomInformationText extends StatelessWidget {
   final String title;

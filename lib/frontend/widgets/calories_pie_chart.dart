@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:hena_gym/constants/my_gui.dart';
+import '../../constants/my_gui.dart';
 
 // ignore: must_be_immutable
 class CaloriesPieChart extends StatelessWidget {

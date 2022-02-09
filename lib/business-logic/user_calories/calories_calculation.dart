@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hena_gym/constants/strings.dart';
-import 'package:hena_gym/data/models/user_calories.dart';
+import '../../constants/strings.dart';
+import '../../data/models/user_calories.dart';
 
 class CaloriesCalcuation {
   Map getProteinFatsCarbCalories(int calories) {

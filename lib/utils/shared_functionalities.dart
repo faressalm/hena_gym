@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hena_gym/constants/strings.dart';
+import '../constants/strings.dart';
 
 popAllUntilfirstScreen(context) {
   Navigator.pushNamedAndRemoveUntil(

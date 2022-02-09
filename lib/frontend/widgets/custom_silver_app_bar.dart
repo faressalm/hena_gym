@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hena_gym/constants/my_gui.dart';
+import '../../constants/my_gui.dart';
 
 class CustomSilverAppBar extends StatelessWidget {
   final String title;

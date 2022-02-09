@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hena_gym/business-logic/user_calories/calories_calculation.dart';
-import 'package:hena_gym/business-logic/user_calories/cubit/user_calculating_calories_cubit.dart';
-import 'package:hena_gym/constants/my_gui.dart';
-import 'package:hena_gym/constants/strings.dart';
-import 'package:hena_gym/frontend/screens/authenticate/validator.dart';
-import 'package:hena_gym/frontend/widgets/head_and_base_line.dart';
-import 'package:hena_gym/utils/logger.dart';
+import '../../../business-logic/user_calories/calories_calculation.dart';
+import '../../../business-logic/user_calories/cubit/user_calculating_calories_cubit.dart';
+import '../../../constants/my_gui.dart';
+import '../../../constants/strings.dart';
+import '../authenticate/validator.dart';
+import '../../widgets/head_and_base_line.dart';
+import '../../../utils/logger.dart';
 
 class CalculateCaloriesScreen extends StatefulWidget {
   final BuildContext cubitContext;

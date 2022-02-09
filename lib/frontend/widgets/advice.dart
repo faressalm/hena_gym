@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hena_gym/constants/my_gui.dart';
+import '../../constants/my_gui.dart';
 
 class Advice extends StatelessWidget {
   const Advice({

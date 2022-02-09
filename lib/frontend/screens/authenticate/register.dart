@@ -103,7 +103,8 @@ class RegisterScreen extends StatelessWidget {
                                     controller: nameController,
                                     decoration: textInputDecoration.copyWith(
                                         labelText: 'Username',
-                                        suffixIcon: const Icon(Icons.person)),
+                                        suffixIcon: const Icon(Icons.person)
+                                    ),
                                     validator: Validator.validateUsername),
                                 const SizedBox(
                                   height: 20,

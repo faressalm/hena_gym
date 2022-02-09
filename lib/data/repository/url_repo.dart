@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hena_gym/data/services/url_services.dart';
+import '../services/url_services.dart';
 
 class URLRepository {
   final URLServices urlServices;

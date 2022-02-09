@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hena_gym/business-logic/user_calories/cubit/user_calculating_calories_cubit.dart';
-import 'package:hena_gym/constants/my_gui.dart';
-import 'package:hena_gym/constants/strings.dart';
-import 'package:hena_gym/data/models/user_calories.dart';
-import 'package:hena_gym/frontend/screens/nutrition/calculate_calories.dart';
-import 'package:hena_gym/frontend/widgets/image_with_subtitle.dart';
-import 'package:hena_gym/frontend/widgets/loading_indicator.dart';
+import '../../../business-logic/user_calories/cubit/user_calculating_calories_cubit.dart';
+import '../../../constants/my_gui.dart';
+import '../../../constants/strings.dart';
+import '../../../data/models/user_calories.dart';
+import 'calculate_calories.dart';
+import '../../widgets/image_with_subtitle.dart';
+import '../../widgets/loading_indicator.dart';
 
 // ignore: must_be_immutable
 class GoalTypeScreen extends StatelessWidget {

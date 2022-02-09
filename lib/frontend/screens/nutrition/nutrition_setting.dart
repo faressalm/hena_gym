@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hena_gym/business-logic/user_calories/cubit/user_calculating_calories_cubit.dart';
-import 'package:hena_gym/constants/my_gui.dart';
-import 'package:hena_gym/constants/strings.dart';
-import 'package:hena_gym/data/models/user_calories.dart';
-import 'package:hena_gym/frontend/widgets/loading_indicator.dart';
-import 'package:hena_gym/frontend/widgets/setting_row.dart';
-import 'package:hena_gym/utils/logger.dart';
+import '../../../business-logic/user_calories/cubit/user_calculating_calories_cubit.dart';
+import '../../../constants/my_gui.dart';
+import '../../../constants/strings.dart';
+import '../../../data/models/user_calories.dart';
+import '../../widgets/loading_indicator.dart';
+import '../../widgets/setting_row.dart';
+import '../../../utils/logger.dart';
 
 // ignore: must_be_immutable
 class NutritionSetting extends StatefulWidget {

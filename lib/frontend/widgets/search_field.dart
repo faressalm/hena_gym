@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hena_gym/constants/my_gui.dart';
+import '../../constants/my_gui.dart';
 
 class SearchFiled extends StatelessWidget {
   final TextEditingController searchTextController;
