@@ -3,22 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hena_gym/constants/my_gui.dart';
 
+// ignore: must_be_immutable
 class SettingRow extends StatelessWidget {
   final String iconPath;
   final String screenName;
   final String rowTitle;
-  const SettingRow({
-    Key? key,
-    required this.iconPath,
-    required this.screenName,
-    required this.rowTitle,
-  }) : super(key: key);
+  dynamic arguments;
+  SettingRow(
+      {Key? key,
+      required this.iconPath,
+      required this.screenName,
+      required this.rowTitle,
+      this.arguments})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, screenName);
+        Navigator.pushNamed(context, screenName, arguments: arguments);
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -49,11 +52,13 @@ class SettingRow extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Text(
-              rowTitle,
-              style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                      color: MyColors.darkBlue, fontWeight: FontWeight.w600)),
+            Flexible(
+              child: Text(
+                rowTitle,
+                style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                        color: MyColors.darkBlue, fontWeight: FontWeight.w600)),
+              ),
             )
           ],
         ),

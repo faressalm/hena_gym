@@ -29,5 +29,18 @@ var textInputDecoration = InputDecoration(
     borderRadius: BorderRadius.circular(20.0),
   ),
 );
+var boxShadow = BoxDecoration(
+  boxShadow: [
+    BoxShadow(
+      offset: const Offset(0, 15),
+      blurRadius: 22,
+      color: MyColors.cyan.withOpacity(0.15),
+    ),
+    const BoxShadow(
+      blurRadius: 20,
+      color: MyColors.kBackgroundColor,
+    ),
+  ],
+);
 
 const double kDefaultPadding = 20.0;

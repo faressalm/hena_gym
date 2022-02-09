@@ -10,3 +10,7 @@ const locationURL = 'location';
 const calculateCaloriesScreen = "calculate_calories";
 const measurementsScreen = "measurements";
 const goalScreen = "goal_screen";
+const goalTypeScreen = "goal_type_screen";
+const lossWeight = "Loss Weight";
+const gainWeight = "Gain Weight";
+const maintainWeight = "Maintain Weight";
