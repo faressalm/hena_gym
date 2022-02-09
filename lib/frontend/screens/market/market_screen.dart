@@ -13,9 +13,13 @@ import '../../../data/services/market_services.dart';
 import '../../../utils/components.dart';
 import 'product_screen.dart';
 
+// ignore: must_be_immutable
 class MarketScreen extends StatelessWidget {
+  TextEditingController searchController = TextEditingController();
   MarketServicesRepository marketRepository = MarketServicesRepository(
       marketServices: MarketServices(FirebaseFirestore.instance));
+
+  MarketScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -26,21 +30,67 @@ class MarketScreen extends StatelessWidget {
         listener: (context, build) {},
         builder: (context, state) {
           var cubit = MarketCubit.get(context);
-          return ConditionalBuilder(
-              condition: cubit.products.isNotEmpty,
-              builder: (context) => GridView.count(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 1.0,
-                    crossAxisSpacing: 1.0,
-                    childAspectRatio: 1 / 1.5,
-                    shrinkWrap: true,
-                    children: List.generate(
-                        cubit.products.length,
-                        (index) =>
-                            buildGridProduct(cubit.products[index], context)),
+          return Scaffold(
+            appBar: cubit.search
+                ? AppBar(
+                    elevation: 0.0,
+                    title: TextFormField(
+                      decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: "search for product..",
+                          labelStyle: TextStyle(color: MyColors.darkBlue)),
+                      controller: searchController,
+                      onChanged: cubit.getFilteredProducts,
+                    ),
+                    backgroundColor: MyColors.white,
+                    actions: [
+                      IconButton(
+                          onPressed: () {
+                            cubit.changeSearchState();
+                          },
+                          icon: const Icon(
+                            Icons.cancel_outlined,
+                            color: MyColors.darkBlue,
+                          ))
+                    ],
+                  )
+                : AppBar(
+                    elevation: 0.0,
+                    backgroundColor: MyColors.white,
+                    centerTitle: true,
+                    title: const Text(
+                      "Market",
+                      style: TextStyle(
+                        color: MyColors.darkBlue,
+                      ),
+                    ),
+                    actions: [
+                      IconButton(
+                          onPressed: () {
+                            cubit.changeSearchState();
+                          },
+                          icon: const Icon(
+                            Icons.search,
+                            color: MyColors.darkBlue,
+                          ))
+                    ],
                   ),
-              fallback: (context) =>
-                  const Center(child: CircularProgressIndicator()));
+            body: ConditionalBuilder(
+                condition: cubit.products.isNotEmpty,
+                builder: (context) => GridView.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 1.0,
+                      crossAxisSpacing: 1.0,
+                      childAspectRatio: 1 / 1.5,
+                      shrinkWrap: true,
+                      children: List.generate(
+                          cubit.products.length,
+                          (index) =>
+                              buildGridProduct(cubit.products[index], context)),
+                    ),
+                fallback: (context) =>
+                    const Center(child: CircularProgressIndicator())),
+          );
         },
       ),
     );

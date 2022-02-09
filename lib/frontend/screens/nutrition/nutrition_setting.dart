@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../business-logic/user_calories/cubit/user_calculating_calories_cubit.dart';
 import '../../../constants/my_gui.dart';
 import '../../../constants/strings.dart';
 import '../../../data/models/user_calories.dart';
+import '../../../utils/logger.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/setting_row.dart';
-import '../../../utils/logger.dart';
 
 // ignore: must_be_immutable
 class NutritionSetting extends StatefulWidget {
-  NutritionSetting({Key? key}) : super(key: key);
+  const NutritionSetting({Key? key}) : super(key: key);
 
   @override
   State<NutritionSetting> createState() => _NutritionSettingState();

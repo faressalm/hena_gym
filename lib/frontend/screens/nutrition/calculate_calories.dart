@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../business-logic/user_calories/calories_calculation.dart';
-import '../../../business-logic/user_calories/cubit/user_calculating_calories_cubit.dart';
+
 import '../../../constants/my_gui.dart';
 import '../../../constants/strings.dart';
-import '../authenticate/validator.dart';
 import '../../widgets/head_and_base_line.dart';
-import '../../../utils/logger.dart';
+import '../authenticate/validator.dart';
 
 class CalculateCaloriesScreen extends StatefulWidget {
   final BuildContext cubitContext;
@@ -153,7 +150,7 @@ class _CalculateCaloriesScreenState extends State<CalculateCaloriesScreen> {
                       elevation: 18,
                       shadowColor: MyColors.lightGray,
                       child: TextFormField(
-                        validator: (age) => Validator.agetValidator(age),
+                        validator: (age) => Validator.ageValidator(age),
                         keyboardType: TextInputType.number,
                         controller: ageController,
                         decoration: textInputDecoration.copyWith(

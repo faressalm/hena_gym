@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants/strings.dart';
+
 import '../../constants/my_gui.dart';
+import '../../constants/strings.dart';
 import '../../data/models/gym.dart';
 
 class GymItem extends StatelessWidget {
@@ -30,6 +31,10 @@ class GymItem extends StatelessWidget {
                     ? FadeInImage.assetNetwork(
                         width: double.infinity,
                         height: double.infinity,
+                        placeholderErrorBuilder: (context, error, stackTrace) =>
+                            (Image.asset('assets/images/placeholder.png')),
+                        imageErrorBuilder: (context, error, stackTrace) =>
+                            Image.asset('assets/images/placeholder.png'),
                         placeholder: 'assets/images/loading.gif',
                         image: gym.coverPhoto,
                         fit: BoxFit.cover,

@@ -1,9 +1,4 @@
-import 'dart:io';
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hena_gym/data/services/url_services.dart';
 import 'package:hena_gym/frontend/screens/authenticate/validator.dart';
 
 void main() {
@@ -97,5 +92,33 @@ void main() {
   test('valid phone number', () {
     var result = Validator.isValidPhoneNumber('+20100543207');
     expect(result, true);
+  });
+  test('valid Weight', () {
+    var result = Validator.weightValidator('67');
+    expect(result, null);
+  });
+  test('inValid Weight with large value', () {
+    var result = Validator.weightValidator('6566656');
+    expect(result, Validator.wrongWeightFormat);
+  });
+  test('inValid Height with large value', () {
+    var result = Validator.heightValidator('6566656');
+    expect(result, Validator.wrongHeightFormat);
+  });
+  test('valid height', () {
+    var result = Validator.heightValidator('67');
+    expect(result, null);
+  });
+  test('inValid age with large value', () {
+    var result = Validator.ageValidator('6566656');
+    expect(result, Validator.wrongAgeFormat);
+  });
+  test('inValid age with literal value', () {
+    var result = Validator.ageValidator('65666ssssklklklklk56');
+    expect(result, Validator.wrongAgeFormat);
+  });
+  test('valid age', () {
+    var result = Validator.heightValidator('67');
+    expect(result, null);
   });
 }

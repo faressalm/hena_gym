@@ -12,6 +12,9 @@ class Validator {
   static String wrongBirthDateFormat = 'check birth date';
   static String longPhoneNumber = 'very long phone number';
   static String longPassword = 'very long password';
+  static String wrongWeightFormat = "Enter valid weight";
+  static String wrongHeightFormat = "Enter valid height";
+  static String wrongAgeFormat = "Enter valid age";
   static String? validateEmail(String? value) {
     if (value != null) {
       if (value.isEmpty) {
@@ -112,7 +115,7 @@ class Validator {
         weight.length > 6 ||
         double.parse(weight) > 250 ||
         double.parse(weight) < 30) {
-      return "Enter valid weight";
+      return wrongWeightFormat;
     } else {
       return null;
     }
@@ -125,17 +128,17 @@ class Validator {
         height.length > 6 ||
         double.parse(height) > 250 ||
         double.parse(height) < 30) {
-      return "Enter valid height";
+      return wrongHeightFormat;
     } else {
       return null;
     }
   }
 
-  static String? agetValidator(String? age) {
+  static String? ageValidator(String? age) {
     if (age!.isEmpty) {
       return "Set your age";
     } else if (age.length > 2 || !_isNumeric(age)) {
-      return "Enter valid age";
+      return wrongAgeFormat;
     } else {
       return null;
     }
